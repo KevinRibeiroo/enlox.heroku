@@ -1,34 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_enl_chat extends Model {
+export default class infoa_sti_vendas extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_chat: {
+    id_vendas: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_usuario: {
+    id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
-    id_chat_usuario: {
+    id_produto: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(100),
-      allowNull: false
+    ds_codigo: {
+      type: DataTypes.STRING(200),
+      allowNull: true
     },
-    dt_mensagem: {
+    dt_venda: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_enl_chat',
+    tableName: 'infoa_sti_vendas',
     timestamps: false,
     indexes: [
       {
@@ -36,25 +36,25 @@ export default class infoa_enl_chat extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_chat" },
+          { name: "id_vendas" },
         ]
       },
       {
-        name: "id_usuario",
+        name: "id_cliente",
         using: "BTREE",
         fields: [
-          { name: "id_usuario" },
+          { name: "id_cliente" },
         ]
       },
       {
-        name: "id_chat_usuario",
+        name: "id_produto",
         using: "BTREE",
         fields: [
-          { name: "id_chat_usuario" },
+          { name: "id_produto" },
         ]
       },
     ]
   });
-  return infoa_enl_chat;
+  return infoa_sti_vendas;
   }
 }
