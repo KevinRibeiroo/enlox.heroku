@@ -213,6 +213,10 @@ app.put('/produto/:id', async (req, resp) => {
 
 
 
+
+
+// deletar produto 
+
 app.delete('/produto/:id', async (req, resp) => {
     try {
         let id = req.params.id;
@@ -224,10 +228,42 @@ app.delete('/produto/:id', async (req, resp) => {
     } catch (error) {
         resp.send({error: "erro ao deletar produto"})
     }
+});
+
+
+// listar os chats do usurio
+
+app.get('/chat_usu/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+
+        let list = await db.infoa_enl_chat_usuario.findOne({where: {id_usuario_comprador: id}})
+
+
+        resp.send(list);
+    } catch (error) {
+        resp.send({error: "erro ao ler os seus chats"})
+    }
 })
 
 
+// inserindo os valores na tb_chat_usu
 
+app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
+    try {
+        let id_comprador = req.params.id_comprador;
+        let id_vendedor = req.params.id_vendedor;
+
+        let r = await db.infoa_enl_chat_usuario.create({
+            id_usuario_comprador: id_comprador,
+            id_usuario_vendedor: id_vendedor
+        });
+
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "erro ao inserir os usuarios no chat"})
+    }
+});
 
 app.listen(process.env.PORT,
     x =>  console.log(`Oxe bglh ta lá na ${process.env.PORT}`))
