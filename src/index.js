@@ -95,10 +95,10 @@ app.post('/login', async (req, resp) => {
 
 // listar os cadastros
 
-app.get('/usuario', async (req, resp) => {
+app.get('/usuario/:id', async (req, resp) => {
 
     try {
-        let consul = await db.infoa_enl_usuario.findAll();
+        let consul = await db.infoa_enl_usuario.findOne({where: {id_usuario: req.params.id}});
 
         resp.send(consul);
     } catch (error) {
@@ -263,6 +263,37 @@ app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
         resp.send({error: "erro ao inserir os usuarios no chat"})
     }
 });
+
+
+
+
+
+
+
+app.post('/login2', async (req, resp) => {
+    try {
+        let login = req.body;
+
+        let logar = await db.infoa_enl_usuario.findOne({
+            where: {
+                ds_email: login.ds_email
+            }, raw: true});
+
+        resp.send(logar);
+
+    } catch (error) {
+        resp.send({error: "Deu alguma coisa errada ai"})
+    }
+});
+
+
+
+
+
+
+
+
+
 
 app.listen(process.env.PORT,
     x =>  console.log(`Oxe bglh ta lá na ${process.env.PORT}`))
