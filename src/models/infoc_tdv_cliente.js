@@ -1,42 +1,38 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_gab_empresa extends Model {
+export default class infoc_tdv_cliente extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_empresa: {
+    id_cliente: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_empresa: {
+    nm_cliente: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
-    ds_cnpj: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+    ds_cpf: {
+      type: DataTypes.STRING(15),
+      allowNull: true
     },
     ds_email: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+      type: DataTypes.STRING(250),
+      allowNull: true
     },
     ds_senha: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+      type: DataTypes.STRING(50),
+      allowNull: true
     },
-    img_empresa: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    ds_codigo: {
-      type: DataTypes.STRING(255),
+    dt_nascimento: {
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_gab_empresa',
+    tableName: 'infoc_tdv_cliente',
     timestamps: false,
     indexes: [
       {
@@ -44,11 +40,11 @@ export default class infoa_gab_empresa extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_empresa" },
+          { name: "id_cliente" },
         ]
       },
     ]
   });
-  return infoa_gab_empresa;
+  return infoc_tdv_cliente;
   }
 }
