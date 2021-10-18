@@ -63,21 +63,20 @@ app.post('/login', async (req, resp) => {
     app.post('/usuario', async (req, resp) => {
 
         let usu = req.body;
-        let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario,
-                                                        nr_telefone: usu.nr_telefone}});
+        let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
         let r = await db.infoa_enl_usuario.create({
             id_login: 1,
             nm_usuario: usu.nm_usuario,
             ds_cpf: usu.ds_cpf,
-            nr_celular: usu.nr_celular,
+            nr_celular: "dssda",
             nr_telefone: usu.nr_telefone,
             ds_email: usu.ds_email,
             dt_nascimento: Date.now(),
             ds_cep:  usu.ds_cep,
             nr_casa: usu.nr_casa,
             ds_complemento: usu.ds_complemento,
-            bt_sexo: usu.bt_sexo,
-            foto: usu.img_perfil,
+            bt_sexo: 1,
+            foto: "https://i1.sndcdn.com/artworks-000608006128-bvmugt-t500x500.jpg",
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true
@@ -90,10 +89,10 @@ app.post('/login', async (req, resp) => {
 
 // listar os cadastros
 
-app.get('/usuario', async (req, resp) => {
+app.get('/usuario/:id', async (req, resp) => {
 
     try {
-        let consul = await db.infoa_enl_usuario.findAll();
+        let consul = await db.infoa_enl_usuario.findOne({where: {id_usuario: req.params.id}});
 
         resp.send(consul);
     } catch (error) {
@@ -258,6 +257,37 @@ app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
         resp.send({error: "erro ao inserir os usuarios no chat"})
     }
 });
+
+
+
+
+
+
+
+app.post('/login2', async (req, resp) => {
+    try {
+        let login = req.body;
+
+        let logar = await db.infoa_enl_usuario.findOne({
+            where: {
+                ds_email: login.ds_email
+            }, raw: true});
+
+        resp.send(logar);
+
+    } catch (error) {
+        resp.send({error: "Deu alguma coisa errada ai"})
+    }
+});
+
+
+
+
+
+
+
+
+
 
 app.listen(process.env.PORT,
     x =>  console.log(`Oxe bglh ta lá na ${process.env.PORT}`))
