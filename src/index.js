@@ -58,12 +58,6 @@ app.post('/login', async (req, resp) => {
    }
 });
 
-
-
-
-
-
-
     // cadastra usuario
 
     app.post('/usuario', async (req, resp) => {
