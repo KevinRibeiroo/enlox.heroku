@@ -63,20 +63,28 @@ app.post('/login', async (req, resp) => {
     app.post('/usuario', async (req, resp) => {
 
         let usu = req.body;
+
+
         let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
+
+        
         let r = await db.infoa_enl_usuario.create({
-            id_login: 1,
+            id_login: 4,
             nm_usuario: usu.nm_usuario,
+            nm_nome: usu.nm_nome,
             ds_cpf: usu.ds_cpf,
             nr_celular: "dssda",
             nr_telefone: usu.nr_telefone,
             ds_email: usu.ds_email,
+            ds_senha: usu.ds_senha,
             dt_nascimento: Date.now(),
             ds_cep:  usu.ds_cep,
             nr_casa: usu.nr_casa,
             ds_complemento: usu.ds_complemento,
+            ds_bairro: "vish",
+            ds_cidade: "eita",
             bt_sexo: 1,
-            foto: "https://i1.sndcdn.com/artworks-000608006128-bvmugt-t500x500.jpg",
+            img_foto: "https://i1.sndcdn.com/artworks-000608006128-bvmugt-t500x500.jpg",
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true
@@ -270,7 +278,8 @@ app.post('/login2', async (req, resp) => {
 
         let logar = await db.infoa_enl_usuario.findOne({
             where: {
-                ds_email: login.ds_email
+                ds_email: login.ds_email,
+                ds_senha: login.ds_senha
             }, raw: true});
 
         resp.send(logar);
