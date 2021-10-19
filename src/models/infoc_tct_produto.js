@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_sti_produto extends Model {
+export default class infoc_tct_produto extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_produto: {
@@ -10,45 +10,49 @@ export default class infoa_sti_produto extends Model {
       allowNull: false,
       primaryKey: true
     },
-    ds_imagem_produto: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    nm_produto: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    ds_codigo_interno: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
     id_categoria: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'infoc_tct_categorias',
+        key: 'id_categoria'
+      }
+    },
+    nm_produto: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    nr_codigo: {
+      type: DataTypes.STRING(15),
+      allowNull: true
+    },
+    ds_setor: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    ds_embalagem: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    nm_marca: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
+    ds_peso: {
+      type: DataTypes.DECIMAL(4,2),
       allowNull: true
     },
     ds_descricao: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(150),
       allowNull: true
     },
-    vl_valor: {
-      type: DataTypes.DECIMAL(15,2),
-      allowNull: true
-    },
-    nr_estoque_minimo: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    nr_estoque_maximo: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    nr_estoque_atual: {
-      type: DataTypes.INTEGER,
+    vl_preco: {
+      type: DataTypes.DECIMAL(10,2),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_sti_produto',
+    tableName: 'infoc_tct_produto',
     timestamps: false,
     indexes: [
       {
@@ -68,6 +72,6 @@ export default class infoa_sti_produto extends Model {
       },
     ]
   });
-  return infoa_sti_produto;
+  return infoc_tct_produto;
   }
 }

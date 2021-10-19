@@ -27,7 +27,7 @@ export default class infoa_enl_produto extends Model {
       }
     },
     ds_imagem: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING(5000),
       allowNull: false
     },
     nm_produto: {
