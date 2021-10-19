@@ -5,10 +5,10 @@ export default class infod_tif_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_chat: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_chat_usuario: {
       type: DataTypes.INTEGER,

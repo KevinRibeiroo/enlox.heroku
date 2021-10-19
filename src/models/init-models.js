@@ -61,6 +61,15 @@ import _infoc_ntc_denuncia from  "./infoc_ntc_denuncia.js";
 import _infoc_ntc_local from  "./infoc_ntc_local.js";
 import _infoc_ntc_usuario from  "./infoc_ntc_usuario.js";
 import _infoc_ntc_vestimento from  "./infoc_ntc_vestimento.js";
+import _infoc_tct_administrador from  "./infoc_tct_administrador.js";
+import _infoc_tct_cartao from  "./infoc_tct_cartao.js";
+import _infoc_tct_categorias from  "./infoc_tct_categorias.js";
+import _infoc_tct_chat from  "./infoc_tct_chat.js";
+import _infoc_tct_cliente from  "./infoc_tct_cliente.js";
+import _infoc_tct_compra from  "./infoc_tct_compra.js";
+import _infoc_tct_compra_item from  "./infoc_tct_compra_item.js";
+import _infoc_tct_endereco from  "./infoc_tct_endereco.js";
+import _infoc_tct_produto from  "./infoc_tct_produto.js";
 import _infoc_tdv_adm from  "./infoc_tdv_adm.js";
 import _infoc_tdv_cliente from  "./infoc_tdv_cliente.js";
 import _infoc_tdv_cupom from  "./infoc_tdv_cupom.js";
@@ -167,6 +176,15 @@ export default function initModels(sequelize) {
   var infoc_ntc_local = _infoc_ntc_local.init(sequelize, DataTypes);
   var infoc_ntc_usuario = _infoc_ntc_usuario.init(sequelize, DataTypes);
   var infoc_ntc_vestimento = _infoc_ntc_vestimento.init(sequelize, DataTypes);
+  var infoc_tct_administrador = _infoc_tct_administrador.init(sequelize, DataTypes);
+  var infoc_tct_cartao = _infoc_tct_cartao.init(sequelize, DataTypes);
+  var infoc_tct_categorias = _infoc_tct_categorias.init(sequelize, DataTypes);
+  var infoc_tct_chat = _infoc_tct_chat.init(sequelize, DataTypes);
+  var infoc_tct_cliente = _infoc_tct_cliente.init(sequelize, DataTypes);
+  var infoc_tct_compra = _infoc_tct_compra.init(sequelize, DataTypes);
+  var infoc_tct_compra_item = _infoc_tct_compra_item.init(sequelize, DataTypes);
+  var infoc_tct_endereco = _infoc_tct_endereco.init(sequelize, DataTypes);
+  var infoc_tct_produto = _infoc_tct_produto.init(sequelize, DataTypes);
   var infoc_tdv_adm = _infoc_tdv_adm.init(sequelize, DataTypes);
   var infoc_tdv_cliente = _infoc_tdv_cliente.init(sequelize, DataTypes);
   var infoc_tdv_cupom = _infoc_tdv_cupom.init(sequelize, DataTypes);
@@ -249,6 +267,24 @@ export default function initModels(sequelize) {
   infoc_ntc_usuario.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_usuario"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_vestimento, { as: "id_vestimento_infoc_ntc_vestimento", foreignKey: "id_vestimento"});
   infoc_ntc_vestimento.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_vestimento"});
+  infoc_tct_chat.belongsTo(infoc_tct_administrador, { as: "id_administrador_infoc_tct_administrador", foreignKey: "id_administrador"});
+  infoc_tct_administrador.hasMany(infoc_tct_chat, { as: "infoc_tct_chats", foreignKey: "id_administrador"});
+  infoc_tct_cliente.belongsTo(infoc_tct_cartao, { as: "id_cartao_infoc_tct_cartao", foreignKey: "id_cartao"});
+  infoc_tct_cartao.hasMany(infoc_tct_cliente, { as: "infoc_tct_clientes", foreignKey: "id_cartao"});
+  infoc_tct_produto.belongsTo(infoc_tct_categorias, { as: "id_categoria_infoc_tct_categoria", foreignKey: "id_categoria"});
+  infoc_tct_categorias.hasMany(infoc_tct_produto, { as: "infoc_tct_produtos", foreignKey: "id_categoria"});
+  infoc_tct_chat.belongsTo(infoc_tct_cliente, { as: "id_cliente_infoc_tct_cliente", foreignKey: "id_cliente"});
+  infoc_tct_cliente.hasMany(infoc_tct_chat, { as: "infoc_tct_chats", foreignKey: "id_cliente"});
+  infoc_tct_compra.belongsTo(infoc_tct_cliente, { as: "id_cliente_infoc_tct_cliente", foreignKey: "id_cliente"});
+  infoc_tct_cliente.hasMany(infoc_tct_compra, { as: "infoc_tct_compras", foreignKey: "id_cliente"});
+  infoc_tct_compra_item.belongsTo(infoc_tct_compra, { as: "id_compra_infoc_tct_compra", foreignKey: "id_compra"});
+  infoc_tct_compra.hasMany(infoc_tct_compra_item, { as: "infoc_tct_compra_items", foreignKey: "id_compra"});
+  infoc_tct_cliente.belongsTo(infoc_tct_endereco, { as: "id_endereco_infoc_tct_endereco", foreignKey: "id_endereco"});
+  infoc_tct_endereco.hasMany(infoc_tct_cliente, { as: "infoc_tct_clientes", foreignKey: "id_endereco"});
+  infoc_tct_compra.belongsTo(infoc_tct_endereco, { as: "id_endereco_infoc_tct_endereco", foreignKey: "id_endereco"});
+  infoc_tct_endereco.hasMany(infoc_tct_compra, { as: "infoc_tct_compras", foreignKey: "id_endereco"});
+  infoc_tct_compra_item.belongsTo(infoc_tct_produto, { as: "id_produto_infoc_tct_produto", foreignKey: "id_produto"});
+  infoc_tct_produto.hasMany(infoc_tct_compra_item, { as: "infoc_tct_compra_items", foreignKey: "id_produto"});
   infoc_tdv_endereco.belongsTo(infoc_tdv_cliente, { as: "id_cliente_infoc_tdv_cliente", foreignKey: "id_cliente"});
   infoc_tdv_cliente.hasMany(infoc_tdv_endereco, { as: "infoc_tdv_enderecos", foreignKey: "id_cliente"});
   infoc_tdv_favorito.belongsTo(infoc_tdv_cliente, { as: "id_cliente_infoc_tdv_cliente", foreignKey: "id_cliente"});
@@ -332,6 +368,15 @@ export default function initModels(sequelize) {
     infoc_ntc_local,
     infoc_ntc_usuario,
     infoc_ntc_vestimento,
+    infoc_tct_administrador,
+    infoc_tct_cartao,
+    infoc_tct_categorias,
+    infoc_tct_chat,
+    infoc_tct_cliente,
+    infoc_tct_compra,
+    infoc_tct_compra_item,
+    infoc_tct_endereco,
+    infoc_tct_produto,
     infoc_tdv_adm,
     infoc_tdv_cliente,
     infoc_tdv_cupom,
