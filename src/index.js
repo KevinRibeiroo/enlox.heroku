@@ -69,7 +69,7 @@ app.post('/login', async (req, resp) => {
 
         
         let r = await db.infoa_enl_usuario.create({
-            id_login: 4,
+            id_login: 1,
             nm_usuario: usu.nm_usuario,
             nm_nome: usu.nm_nome,
             ds_cpf: usu.ds_cpf,
