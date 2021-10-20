@@ -140,15 +140,19 @@ app.get('/usuario/:id', async (req, resp) => {
 // inserir um produto 
 
 
-app.post('/produto', async (req, resp) => {
+app.post('/produto/:id', async (req, resp) => {
     try {
+        
         let produto = req.body;
-
+        let id = req.params.id;
+       
         let filter = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
+
 
         let r = await db.infoa_enl_produto.create({
                 id_categoria: 1,
-                id_usuario: 1,
+                id_usuario: id,
+                ds_imagem: produto.img,
                 nm_produto: produto.nm_produto,
                 vl_preco: produto.vl_preco,
                 ds_produto: produto.ds_produto,
@@ -158,8 +162,9 @@ app.post('/produto', async (req, resp) => {
                 nr_desconto: 1
         });
 
-
+        
         resp.send(r);
+        
     } catch (error) {
         resp.send({error: "Erro ao inserir o produto meu cumpadrade"})
     }
@@ -182,6 +187,20 @@ app.get('/produto/:id', async (req, resp) => {
         resp.send({error: "erro ao listar os produtos"})
     }
 });
+
+
+
+
+app.get('/produto', async (req, resp) => {
+    try {
+        let consul = await db.infoa_enl_produto.findAll();
+
+
+        resp.send(consul);
+    } catch (error) {
+        resp.send({error: "erro ao listar "})
+    }
+})
 
 
 // alterar produto
@@ -238,7 +257,7 @@ app.get('/chat_usu/:id', async (req, resp) => {
     try {
         let id = req.params.id;
 
-        let list = await db.infoa_enl_chat_usuario.findOne({where: {id_usuario_comprador: id}})
+        let list = await db.infoa_enl_chat_usuario.findOne({where: {id_usuario_comprador: id} || {id_usuario_vendedor: id}})
 
 
         resp.send(list);
@@ -292,7 +311,33 @@ app.post('/login2', async (req, resp) => {
 
 
 
+app.post('/categoria', async (req, resp) => {
+    try {
+        let category = req.body;
 
+        let r = await db.infoa_enl_categoria.create({
+            nm_categoria: category.nm_categoria
+        });
+
+
+        resp.send(category);
+    } catch (error) {
+        resp.send({error: "falha ao inserir uma categoria"})
+    }
+});
+
+
+
+app.get('/categoria', async (req, resp) => {
+    try {
+        let consul = await db.infoa_enl_categoria.findAll();
+
+
+        resp.send(consul);
+    } catch (error) {
+        resp.send({error: "Falha ao listar as categorias"})
+    }
+})
 
 
 
