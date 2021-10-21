@@ -5,58 +5,17 @@ import cors from 'cors';
 
 
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 
 
-    // listar os logados
-
-app.get('/login', async  (req, resp) => {
-    try {
-        let consul = await db.infoa_enl_login.findAll();
-
-        resp.send(consul);
-    } catch (erro) {
-        resp.send({erro: "não estou conseguindo ler"});
-    }
-})
 
 
 
-    // lgar usuario
-app.post('/login', async (req, resp) => {
 
-   try {
-       let login = req.body;
-
-       //let selection = await db.infoa_enl_usuario.findOne({where: {id_usuario: login.id_usuario}});
-
-        let filtro = await db.infoa_enl_usuario.findOne({where:{ ds_email: login.ds_email}})
-
-
-       let r = await db.infoa_enl_login.create({
-           ds_email: login.ds_email,
-           ds_senha: login.ds_senha,
-           dt_ult_login: Date.now(),
-           dt_registro: Date.now()
-       });
-
-
-       let logado = await db.infoa_enl_usuario.update({
-        id_login: r.id_login
-    },
-    {
-        where: {id_usuario: filtro.id_usuario}
-    });
-
-       resp.send(r);
-       resp.send(logado)
-   } catch (error) {
-       resp.send({error: "Falha ao inserir um usuario"});
-   }
-});
 
     // cadastra usuario
 
@@ -341,7 +300,35 @@ app.get('/categoria', async (req, resp) => {
 })
 
 
+app.post('/chat/:id', async (req, resp) => {
+    try {
+        let chat = req.body;
+        let id = req.params.id;
 
+        let consul = await db.infoa_enl_chat.findOne({where: {id_usuario: id}})
+
+        
+        let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
+            where: 
+            {id_usuario_comprador: id}
+            ||
+            {id_usuario_vendedor: id}
+        });
+
+        let r = await db.infoa_enl_chat.create({
+            id_usuario: consul,
+            id_chat_usuario: id_chat_usu,
+            ds_mensagem: chat.msg,
+            dt_mensagem: new Date()
+        });
+
+
+        resp.send(r);
+        
+    } catch (error) {
+        resp.send({error: "erro ao inserir mensagem"});
+    }
+})
 
 
 app.listen(process.env.PORT,
