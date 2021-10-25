@@ -1,42 +1,54 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_sti_vendas extends Model {
+export default class infod_ssc_pedido extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_vendas: {
+    id_pedido: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_cliente: {
+    id_venda: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoa_sti_cliente',
-        key: 'id_cliente'
+        model: 'infod_ssc_venda',
+        key: 'id_venda'
       }
     },
-    id_produto: {
+    id_item: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoa_sti_produto',
-        key: 'id_produto'
+        model: 'infod_ssc_item',
+        key: 'id_item'
       }
     },
-    ds_codigo: {
-      type: DataTypes.STRING(10),
+    vl_pedido: {
+      type: DataTypes.DECIMAL(10,0),
       allowNull: true
     },
-    dt_vendas: {
-      type: DataTypes.DATEONLY,
+    dt_pedido: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    ds_entregue: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    ds_acaminho: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    ds_preparando: {
+      type: DataTypes.BOOLEAN,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_sti_vendas',
+    tableName: 'infod_ssc_pedido',
     timestamps: false,
     indexes: [
       {
@@ -44,25 +56,25 @@ export default class infoa_sti_vendas extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_vendas" },
+          { name: "id_pedido" },
         ]
       },
       {
-        name: "id_cliente",
+        name: "id_item",
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
+          { name: "id_item" },
         ]
       },
       {
-        name: "id_produto",
+        name: "id_venda",
         using: "BTREE",
         fields: [
-          { name: "id_produto" },
+          { name: "id_venda" },
         ]
       },
     ]
   });
-  return infoa_sti_vendas;
+  return infod_ssc_pedido;
   }
 }

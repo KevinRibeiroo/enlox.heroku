@@ -170,7 +170,6 @@ app.put('/produto/:id', async (req, resp) => {
       
         let produto = req.body;
 
-
         let r = await db.infoa_enl_produto.update({
             id_categoria: produto.id_categoria,
             nm_produto: produto.nm_produto,

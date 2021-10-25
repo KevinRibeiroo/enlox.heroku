@@ -1,38 +1,30 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_atn_tb_chat extends Model {
+export default class infoc_nws_tb_calendario extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_chat: {
+    id_calendario: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_sala: {
+    id_evento: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoc_atn_tb_sala',
-        key: 'id_sala'
+        model: 'infoc_nws_tb_evento',
+        key: 'id_evento'
       }
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    dt_mensagem: {
+    dt_evento: {
       type: DataTypes.DATE,
-      allowNull: true
-    },
-    tp_enviado_por: {
-      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_atn_tb_chat',
+    tableName: 'infoc_nws_tb_calendario',
     timestamps: false,
     indexes: [
       {
@@ -40,18 +32,18 @@ export default class infoc_atn_tb_chat extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_chat" },
+          { name: "id_calendario" },
         ]
       },
       {
-        name: "id_sala",
+        name: "id_evento",
         using: "BTREE",
         fields: [
-          { name: "id_sala" },
+          { name: "id_evento" },
         ]
       },
     ]
   });
-  return infoc_atn_tb_chat;
+  return infoc_nws_tb_calendario;
   }
 }
