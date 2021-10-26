@@ -1,7 +1,9 @@
 import db from './db.js';
 import express from 'express';
 import cors from 'cors';
+import Sequelize from 'sequelize'
 
+const {Op, col} = Sequelize;
 
 
 
@@ -217,7 +219,19 @@ app.get('/chat_usu/:id', async (req, resp) => {
     try {
         let id = req.params.id;
 
-        let list = await db.infoa_enl_chat_usuario.findOne({where: {id_usuario_comprador: id} || {id_usuario_vendedor: id}})
+        const list = await db.infoa_enl_chat_usuario.findOne({where: {[Op.or] : [{id_usuario_comprador: id}, {id_usuario_vendedor: id}]}, 
+            include:[
+                {
+                model: db.infoa_enl_usuario,
+                as: "id_usuario_vendedor_infoa_enl_usuario" , 
+                required: true
+                },
+                {
+                    model: db.infoa_enl_usuario,
+                    as: "id_usuario_comprador_infoa_enl_usuario" , 
+                    required: true
+                } 
+            ]})
 
 
         resp.send(list);
@@ -234,10 +248,19 @@ app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
         let id_comprador = req.params.id_comprador;
         let id_vendedor = req.params.id_vendedor;
 
+        const consul = await db.infoa_enl_chat_usuario.findOne({where: { id_usuario_comprador: id_comprador,
+            id_usuario_vendedor: id_vendedor}});
+
+
+        if (consul != null)
+            return resp.send({erro: 'já existe essse chat'});    
+        
+
         let r = await db.infoa_enl_chat_usuario.create({
             id_usuario_comprador: id_comprador,
             id_usuario_vendedor: id_vendedor
         });
+
 
         resp.send(r);
     } catch (error) {
@@ -300,24 +323,21 @@ app.get('/categoria', async (req, resp) => {
 })
 
 
-app.post('/chat/:id', async (req, resp) => {
+app.post('/chat/:id/:id2', async (req, resp) => {
     try {
         let chat = req.body;
         let id = req.params.id;
 
-        let consul = await db.infoa_enl_chat.findOne({where: {id_usuario: id}})
+        //let consul = await db.infoa_enl_chat.findOne({where: {id_usuario: id}})
 
         
         let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
-            where: 
-            {id_usuario_comprador: id}
-            ||
-            {id_usuario_vendedor: id}
+            where: {id_usuario_comprador: id, id_usuario_vendedor: req.params.id2}
         });
 
         let r = await db.infoa_enl_chat.create({
-            id_usuario: consul,
-            id_chat_usuario: id_chat_usu,
+            id_usuario: id,
+            id_chat_usuario: id_chat_usu.id_chat_usuario,
             ds_mensagem: chat.msg,
             dt_mensagem: new Date()
         });
@@ -327,6 +347,37 @@ app.post('/chat/:id', async (req, resp) => {
         
     } catch (error) {
         resp.send({error: "erro ao inserir mensagem"});
+    }
+});
+
+
+
+app.get('/chat/:id/:id2', async (req, resp) => {
+    try {
+        let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
+            where: {id_usuario_comprador: req.params.id, id_usuario_vendedor: req.params.id2}
+        });
+
+        let chat = await db.infoa_enl_chat.findAll({where: {id_chat_usuario: id_chat_usu.id_chat_usuario},
+            include: [
+                {
+                    model: db.infoa_enl_chat_usuario,
+                    as: "id_chat_usuario_infoa_enl_chat_usuario",
+                    required: true,
+
+                    include: [
+                        {
+                            model: db.infoa_enl_usuario,
+                            as: "id_usuario_vendedor_infoa_enl_usuario" , 
+                            required: true 
+                        }
+                    ]
+                }
+            ]});
+
+        resp.send(chat);
+    } catch (error) {
+        resp.send({error: "erro ao ler mensagens"})
     }
 })
 
