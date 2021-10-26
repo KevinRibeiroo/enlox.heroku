@@ -109,9 +109,12 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: 1,
+                id_categoria: produto.id_categoria,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
-                ds_imagem: produto.img,
+                ds_imagem1: produto.img,
+                ds_imagem2: produto.img,
+                ds_imagem3: produto.img,
+                ds_imagem4: produto.img,
                 nm_produto: produto.nm_produto,
                 vl_preco: produto.vl_preco,
                 ds_produto: produto.ds_produto,
@@ -119,6 +122,7 @@ app.post('/produto/:id', async (req, resp) => {
                 nr_media_avaliacao: 1,
                 nr_avaliacao: produto.nr_avaliacao,
                 nr_desconto: 1
+                
         });
 
         
