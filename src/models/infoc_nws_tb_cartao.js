@@ -1,42 +1,46 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_sti_vendas extends Model {
+export default class infoc_nws_tb_cartao extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_vendas: {
+    id_cartao: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_cliente: {
+    id_venda: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoa_sti_cliente',
-        key: 'id_cliente'
+        model: 'infoc_nws_tb_venda',
+        key: 'id_venda'
       }
     },
-    id_produto: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_sti_produto',
-        key: 'id_produto'
-      }
-    },
-    ds_codigo: {
-      type: DataTypes.STRING(10),
+    nr_cartao: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    dt_vendas: {
+    ds_cvc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    dt_vencimento: {
       type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    ds_cpf: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    nm_titular: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_sti_vendas',
+    tableName: 'infoc_nws_tb_cartao',
     timestamps: false,
     indexes: [
       {
@@ -44,25 +48,18 @@ export default class infoa_sti_vendas extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_vendas" },
+          { name: "id_cartao" },
         ]
       },
       {
-        name: "id_cliente",
+        name: "id_venda",
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
-        ]
-      },
-      {
-        name: "id_produto",
-        using: "BTREE",
-        fields: [
-          { name: "id_produto" },
+          { name: "id_venda" },
         ]
       },
     ]
   });
-  return infoa_sti_vendas;
+  return infoc_nws_tb_cartao;
   }
 }

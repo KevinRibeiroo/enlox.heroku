@@ -1,38 +1,30 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_atn_tb_chat extends Model {
+export default class infoc_nws_tb_pix extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_chat: {
+    id_pix: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_sala: {
+    id_venda: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoc_atn_tb_sala',
-        key: 'id_sala'
+        model: 'infoc_nws_tb_venda',
+        key: 'id_venda'
       }
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    dt_mensagem: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    tp_enviado_por: {
-      type: DataTypes.STRING(100),
+    nr_pix: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_atn_tb_chat',
+    tableName: 'infoc_nws_tb_pix',
     timestamps: false,
     indexes: [
       {
@@ -40,18 +32,18 @@ export default class infoc_atn_tb_chat extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_chat" },
+          { name: "id_pix" },
         ]
       },
       {
-        name: "id_sala",
+        name: "id_venda",
         using: "BTREE",
         fields: [
-          { name: "id_sala" },
+          { name: "id_venda" },
         ]
       },
     ]
   });
-  return infoc_atn_tb_chat;
+  return infoc_nws_tb_pix;
   }
 }
