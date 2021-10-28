@@ -34,7 +34,7 @@ app.use(express.json());
             nm_usuario: usu.nm_usuario,
             nm_nome: usu.nm_nome,
             ds_cpf: usu.ds_cpf,
-            nr_celular: "dssda",
+            nr_celular: usu.nr_celular,
             nr_telefone: usu.nr_telefone,
             ds_email: usu.ds_email,
             ds_senha: usu.ds_senha,
@@ -45,7 +45,7 @@ app.use(express.json());
             ds_bairro: "vish",
             ds_cidade: "eita",
             bt_sexo: 1,
-            img_foto: "https://i1.sndcdn.com/artworks-000608006128-bvmugt-t500x500.jpg",
+            img_foto: "https://preview.redd.it/3nywl0prkvr71.jpg?width=960&crop=smart&auto=webp&s=6db81feb5ec64b9572353402597423ae4617f8ff",
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true
