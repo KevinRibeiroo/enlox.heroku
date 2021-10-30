@@ -1,10 +1,10 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_gab_entrega extends Model {
+export default class infoa_sti_venda extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_entrega: {
+    id_venda: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -12,35 +12,31 @@ export default class infoa_gab_entrega extends Model {
     },
     id_endereco: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
-        model: 'infoa_gab_endereco',
+        model: 'infoa_sti_endereco',
         key: 'id_endereco'
       }
     },
-    ds_situacao: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    dt_saida: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    dt_entrega: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    id_venda: {
+    id_produto: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoa_gab_venda',
-        key: 'id_venda'
+        model: 'infoa_sti_produto',
+        key: 'id_produto'
       }
+    },
+    ds_codigo: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    dt_venda: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_gab_entrega',
+    tableName: 'infoa_sti_venda',
     timestamps: false,
     indexes: [
       {
@@ -48,7 +44,7 @@ export default class infoa_gab_entrega extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_entrega" },
+          { name: "id_venda" },
         ]
       },
       {
@@ -59,14 +55,14 @@ export default class infoa_gab_entrega extends Model {
         ]
       },
       {
-        name: "id_venda",
+        name: "id_produto",
         using: "BTREE",
         fields: [
-          { name: "id_venda" },
+          { name: "id_produto" },
         ]
       },
     ]
   });
-  return infoa_gab_entrega;
+  return infoa_sti_venda;
   }
 }

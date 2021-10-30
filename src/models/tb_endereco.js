@@ -1,26 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_sti_vendas_item extends Model {
+export default class tb_endereco extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_vendas_item: {
+    id_endereco: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_vendas: {
+    nr_cep: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    nm_rua: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    nr_casa: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_sti_vendas',
-        key: 'id_vendas'
-      }
+      allowNull: true
+    },
+    ds_referencia: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_sti_vendas_item',
+    tableName: 'tb_endereco',
     timestamps: false,
     indexes: [
       {
@@ -28,18 +36,11 @@ export default class infoa_sti_vendas_item extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_vendas_item" },
-        ]
-      },
-      {
-        name: "id_vendas",
-        using: "BTREE",
-        fields: [
-          { name: "id_vendas" },
+          { name: "id_endereco" },
         ]
       },
     ]
   });
-  return infoa_sti_vendas_item;
+  return tb_endereco;
   }
 }

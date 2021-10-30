@@ -131,7 +131,7 @@ app.post('/produto/:id', async (req, resp) => {
                 bt_ativo: true,
                 nr_media_avaliacao: 1,
                 nr_avaliacao: produto.nr_avaliacao,
-                nr_desconto: 1
+                nr_desconto: produto.desc
                 
         });
 

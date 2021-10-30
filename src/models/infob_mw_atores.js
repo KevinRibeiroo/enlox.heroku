@@ -1,10 +1,10 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infob_mw_comentario extends Model {
+export default class infob_mw_atores extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cometario: {
+    id_ator: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -14,25 +14,17 @@ export default class infob_mw_comentario extends Model {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    id_usuario: {
-      type: DataTypes.INTEGER,
+    nm_ator: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(300),
-      allowNull: true
-    },
-    dt_comentario: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    ds_curtidas: {
-      type: DataTypes.INTEGER,
+    ds_princ_atores: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infob_mw_comentario',
+    tableName: 'infob_mw_atores',
     timestamps: false,
     indexes: [
       {
@@ -40,7 +32,7 @@ export default class infob_mw_comentario extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_cometario" },
+          { name: "id_ator" },
         ]
       },
       {
@@ -50,15 +42,8 @@ export default class infob_mw_comentario extends Model {
           { name: "id_filme" },
         ]
       },
-      {
-        name: "id_usuario",
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
-        ]
-      },
     ]
   });
-  return infob_mw_comentario;
+  return infob_mw_atores;
   }
 }
