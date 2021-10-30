@@ -23,6 +23,11 @@ app.use(express.json());
 
     app.post('/usuario', async (req, resp) => {
 
+
+
+        try {
+            
+        
         let usu = req.body;
 
 
@@ -52,6 +57,10 @@ app.use(express.json());
         });
 
         resp.send(r);
+    }
+        catch (error) {
+            resp.send({error: "insere direito"})   
+        }
     })
 
 
@@ -111,12 +120,12 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: produto.id_categoria,//categorias foram criadas; id de 1 a 7
+                id_categoria: 1,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
                 ds_imagem1: produto.img,
-                ds_imagem2: produto.img,
-                ds_imagem3: produto.img,
-                ds_imagem4: produto.img,
+                ds_imagem2: produto.img2,
+                ds_imagem3: produto.img3,
+                ds_imagem4: produto.img4,
                 nm_produto: produto.nm_produto,
                 vl_preco: produto.vl_preco,
                 ds_produto: produto.ds_produto,
