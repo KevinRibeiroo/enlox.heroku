@@ -1,46 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_gab_entrega extends Model {
+export default class infob_hdm_usuario extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_entrega: {
+    id_HDM_usuario: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_endereco: {
+    nm_HDM_nome: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'infoa_gab_endereco',
-        key: 'id_endereco'
-      }
-    },
-    ds_situacao: {
-      type: DataTypes.STRING(255),
       allowNull: true
     },
-    dt_saida: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    dt_entrega: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    id_venda: {
+    nm_HDM_sobrenome: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_gab_venda',
-        key: 'id_venda'
-      }
+      allowNull: true
+    },
+    nm_HDM_email: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    nm_HDM_senha: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_gab_entrega',
+    tableName: 'infob_hdm_usuario',
     timestamps: false,
     indexes: [
       {
@@ -48,25 +36,32 @@ export default class infoa_gab_entrega extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_entrega" },
+          { name: "id_HDM_usuario" },
         ]
       },
       {
-        name: "id_endereco",
+        name: "nm_HDM_nome",
         using: "BTREE",
         fields: [
-          { name: "id_endereco" },
+          { name: "nm_HDM_nome" },
         ]
       },
       {
-        name: "id_venda",
+        name: "nm_HDM_email",
         using: "BTREE",
         fields: [
-          { name: "id_venda" },
+          { name: "nm_HDM_email" },
+        ]
+      },
+      {
+        name: "nm_HDM_senha",
+        using: "BTREE",
+        fields: [
+          { name: "nm_HDM_senha" },
         ]
       },
     ]
   });
-  return infoa_gab_entrega;
+  return infob_hdm_usuario;
   }
 }

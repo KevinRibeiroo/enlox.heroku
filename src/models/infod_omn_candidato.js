@@ -1,50 +1,62 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoa_sti_endereco extends Model {
+export default class infod_omn_candidato extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cliente: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_sti_cliente',
-        key: 'id_cliente'
-      }
-    },
-    id_endereco: {
+    id_candidato: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    ds_endereco: {
+    nm_candidato: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_cep: {
+    ds_email: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    nr_numero: {
+    ds_senha: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_sexo: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    img_candidato: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_nacionalidade: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_telefone: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    dt_nascimento: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    ds_estado_civil: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_localidade: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    id_curriculo: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    ds_cpf: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_complemento: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_cidade: {
-      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoa_sti_endereco',
+    tableName: 'infod_omn_candidato',
     timestamps: false,
     indexes: [
       {
@@ -52,18 +64,18 @@ export default class infoa_sti_endereco extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_endereco" },
+          { name: "id_candidato" },
         ]
       },
       {
-        name: "id_cliente",
+        name: "id_curriculo",
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
+          { name: "id_curriculo" },
         ]
       },
     ]
   });
-  return infoa_sti_endereco;
+  return infod_omn_candidato;
   }
 }

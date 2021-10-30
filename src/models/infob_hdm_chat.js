@@ -1,34 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infob_apn_tb_user extends Model {
+export default class infob_hdm_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    ID_USER: {
+    id_HDM_chat: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    NM_USER: {
-      type: DataTypes.STRING(100),
+    id_HDM_usuario: {
+      type: DataTypes.INTEGER,
       allowNull: true
     },
-    NM_SOBRENOME: {
-      type: DataTypes.STRING(100),
+    ds_HDM_mensagem: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    DS_EMAIL: {
-      type: DataTypes.STRING(100),
+    nm_HDM_usuario: {
+      type: DataTypes.STRING(200),
       allowNull: true
     },
-    ds_senha: {
-      type: DataTypes.STRING(100),
+    dt_HDM_data: {
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infob_apn_tb_user',
+    tableName: 'infob_hdm_chat',
     timestamps: false,
     indexes: [
       {
@@ -36,11 +36,18 @@ export default class infob_apn_tb_user extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "ID_USER" },
+          { name: "id_HDM_chat" },
+        ]
+      },
+      {
+        name: "id_HDM_usuario",
+        using: "BTREE",
+        fields: [
+          { name: "id_HDM_usuario" },
         ]
       },
     ]
   });
-  return infob_apn_tb_user;
+  return infob_hdm_chat;
   }
 }

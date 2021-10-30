@@ -1,46 +1,50 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_tdv_endereco extends Model {
+export default class infoc_tcc_venda extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_endereco: {
+    id_venda: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
+    id_produto: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'infoc_tcc_produto',
+        key: 'id_produto'
+      }
+    },
     id_cliente: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoc_tdv_cliente',
+        model: 'infoc_tcc_cliente',
         key: 'id_cliente'
       }
     },
-    nm_rua: {
+    dt_compra: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    ds_pagamento: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_cep: {
-      type: DataTypes.STRING(16),
+    nr_celular: {
+      type: DataTypes.DECIMAL(12,3),
       allowNull: true
     },
-    ds_numero: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    ds_bairro: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    ds_complemento: {
-      type: DataTypes.STRING(200),
+    ds_preco: {
+      type: DataTypes.DECIMAL(12,3),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_tdv_endereco',
+    tableName: 'infoc_tcc_venda',
     timestamps: false,
     indexes: [
       {
@@ -48,7 +52,14 @@ export default class infoc_tdv_endereco extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_endereco" },
+          { name: "id_venda" },
+        ]
+      },
+      {
+        name: "id_produto",
+        using: "BTREE",
+        fields: [
+          { name: "id_produto" },
         ]
       },
       {
@@ -60,6 +71,6 @@ export default class infoc_tdv_endereco extends Model {
       },
     ]
   });
-  return infoc_tdv_endereco;
+  return infoc_tcc_venda;
   }
 }

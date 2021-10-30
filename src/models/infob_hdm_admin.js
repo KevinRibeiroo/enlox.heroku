@@ -1,46 +1,30 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_tdv_cliente extends Model {
+export default class infob_hdm_admin extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cliente: {
+    id_HDM_chat: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_cliente: {
+    ds_HDM_mensagem: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_cpf: {
-      type: DataTypes.STRING(15),
-      allowNull: true
-    },
-    ds_email: {
-      type: DataTypes.STRING(250),
-      allowNull: true
-    },
-    nr_contato: {
-      type: DataTypes.STRING(15),
-      allowNull: true
-    },
-    ds_senha: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    dt_nascimento: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    ds_codigo_rec: {
+    nm_HDM_usuario: {
       type: DataTypes.STRING(200),
+      allowNull: true
+    },
+    dt_HDM_data: {
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_tdv_cliente',
+    tableName: 'infob_hdm_admin',
     timestamps: false,
     indexes: [
       {
@@ -48,11 +32,11 @@ export default class infoc_tdv_cliente extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
+          { name: "id_HDM_chat" },
         ]
       },
     ]
   });
-  return infoc_tdv_cliente;
+  return infob_hdm_admin;
   }
 }
