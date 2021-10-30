@@ -35,7 +35,6 @@ app.use(express.json());
 
         
         let r = await db.infoa_enl_usuario.create({
-            id_login: 1,
             nm_usuario: usu.nm_usuario,
             nm_nome: usu.nm_nome,
             ds_cpf: usu.ds_cpf,
@@ -50,7 +49,7 @@ app.use(express.json());
             ds_bairro: "vish",
             ds_cidade: "eita",
             bt_sexo: 1,
-            img_foto: "https://preview.redd.it/3nywl0prkvr71.jpg?width=960&crop=smart&auto=webp&s=6db81feb5ec64b9572353402597423ae4617f8ff",
+            img_foto: "https://i.pinimg.com/236x/6c/cf/2e/6ccf2ee10374442a30e79a8cf6c20fc2.jpg",
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true
@@ -231,7 +230,7 @@ app.get('/chat_usu/:id', async (req, resp) => {
     try {
         let id = req.params.id;
 
-        const list = await db.infoa_enl_chat_usuario.findOne({where: {[Op.or] : [{id_usuario_comprador: id}, {id_usuario_vendedor: id}]}, 
+        const list = await db.infoa_enl_chat_usuario.findAll({where: {[Op.or] : [{id_usuario_comprador: id}, {id_usuario_vendedor: id}]}, 
             include:[
                 {
                 model: db.infoa_enl_usuario,
@@ -281,7 +280,16 @@ app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
 });
 
 
+app.delete('/chat_usu/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
 
+
+        const del = await db.infoa_enl_chat.destroy({where:{[Op.or] : [{id_usuario_comprador: id}, {id_usuario_vendedor: id}]} })
+    } catch (error) {
+        
+    }
+})
 
 
 
