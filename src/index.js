@@ -119,7 +119,7 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: 7,//categorias foram criadas; id de 1 a 7
+                id_categoria: 7,//categorias foram criadas; id de 1 a 8
                 id_usuario: id,
                 ds_imagem1: produto.img,
                 ds_imagem2: produto.img2,
