@@ -1,6 +1,5 @@
 import _sequelize from "sequelize";
 const DataTypes = _sequelize.DataTypes;
-import _atn_tb_vagas from  "./atn_tb_vagas.js";
 import _infoa_dtn_tb_avaliacao from  "./infoa_dtn_tb_avaliacao.js";
 import _infoa_dtn_tb_cliente from  "./infoa_dtn_tb_cliente.js";
 import _infoa_dtn_tb_endereco from  "./infoa_dtn_tb_endereco.js";
@@ -105,12 +104,6 @@ import _infoc_tdv_genero from  "./infoc_tdv_genero.js";
 import _infoc_tdv_livro from  "./infoc_tdv_livro.js";
 import _infoc_tdv_pedido from  "./infoc_tdv_pedido.js";
 import _infoc_tdv_pedido_item from  "./infoc_tdv_pedido_item.js";
-import _infoc_tht_cartao from  "./infoc_tht_cartao.js";
-import _infoc_tht_chat from  "./infoc_tht_chat.js";
-import _infoc_tht_compra from  "./infoc_tht_compra.js";
-import _infoc_tht_lugar from  "./infoc_tht_lugar.js";
-import _infoc_tht_pacote from  "./infoc_tht_pacote.js";
-import _infoc_tht_usuario from  "./infoc_tht_usuario.js";
 import _infod_leo_agendamento from  "./infod_leo_agendamento.js";
 import _infod_leo_cliente from  "./infod_leo_cliente.js";
 import _infod_leo_funcionario from  "./infod_leo_funcionario.js";
@@ -150,7 +143,6 @@ import _tb_endereco from  "./tb_endereco.js";
 import _tb_produto from  "./tb_produto.js";
 
 export default function initModels(sequelize) {
-  var atn_tb_vagas = _atn_tb_vagas.init(sequelize, DataTypes);
   var infoa_dtn_tb_avaliacao = _infoa_dtn_tb_avaliacao.init(sequelize, DataTypes);
   var infoa_dtn_tb_cliente = _infoa_dtn_tb_cliente.init(sequelize, DataTypes);
   var infoa_dtn_tb_endereco = _infoa_dtn_tb_endereco.init(sequelize, DataTypes);
@@ -255,12 +247,6 @@ export default function initModels(sequelize) {
   var infoc_tdv_livro = _infoc_tdv_livro.init(sequelize, DataTypes);
   var infoc_tdv_pedido = _infoc_tdv_pedido.init(sequelize, DataTypes);
   var infoc_tdv_pedido_item = _infoc_tdv_pedido_item.init(sequelize, DataTypes);
-  var infoc_tht_cartao = _infoc_tht_cartao.init(sequelize, DataTypes);
-  var infoc_tht_chat = _infoc_tht_chat.init(sequelize, DataTypes);
-  var infoc_tht_compra = _infoc_tht_compra.init(sequelize, DataTypes);
-  var infoc_tht_lugar = _infoc_tht_lugar.init(sequelize, DataTypes);
-  var infoc_tht_pacote = _infoc_tht_pacote.init(sequelize, DataTypes);
-  var infoc_tht_usuario = _infoc_tht_usuario.init(sequelize, DataTypes);
   var infod_leo_agendamento = _infod_leo_agendamento.init(sequelize, DataTypes);
   var infod_leo_cliente = _infod_leo_cliente.init(sequelize, DataTypes);
   var infod_leo_funcionario = _infod_leo_funcionario.init(sequelize, DataTypes);
@@ -371,24 +357,6 @@ export default function initModels(sequelize) {
   infob_amz_tbusuario.hasMany(infob_amz_tbdenuncia, { as: "infob_amz_tbdenuncia", foreignKey: "id_usuario"});
   infob_amz_tbreporte_denuncia.belongsTo(infob_amz_tbusuario, { as: "id_usuario_infob_amz_tbusuario", foreignKey: "id_usuario"});
   infob_amz_tbusuario.hasMany(infob_amz_tbreporte_denuncia, { as: "infob_amz_tbreporte_denuncia", foreignKey: "id_usuario"});
-  infoc_atn_tb_configuracoes_pessoais.belongsTo(infoc_atn_tb_curriculo, { as: "id_curriculo_infoc_atn_tb_curriculo", foreignKey: "id_curriculo"});
-  infoc_atn_tb_curriculo.hasMany(infoc_atn_tb_configuracoes_pessoais, { as: "infoc_atn_tb_configuracoes_pessoais", foreignKey: "id_curriculo"});
-  infoc_atn_tb_curriculo.belongsTo(infoc_atn_tb_empresa, { as: "id_empresa_infoc_atn_tb_empresa", foreignKey: "id_empresa"});
-  infoc_atn_tb_empresa.hasMany(infoc_atn_tb_curriculo, { as: "infoc_atn_tb_curriculos", foreignKey: "id_empresa"});
-  infoc_atn_tb_sala.belongsTo(infoc_atn_tb_empresa, { as: "id_empresa_infoc_atn_tb_empresa", foreignKey: "id_empresa"});
-  infoc_atn_tb_empresa.hasMany(infoc_atn_tb_sala, { as: "infoc_atn_tb_salas", foreignKey: "id_empresa"});
-  infoc_atn_tb_vagas.belongsTo(infoc_atn_tb_empresa, { as: "id_empresa_infoc_atn_tb_empresa", foreignKey: "id_empresa"});
-  infoc_atn_tb_empresa.hasMany(infoc_atn_tb_vagas, { as: "infoc_atn_tb_vagas", foreignKey: "id_empresa"});
-  infoc_atn_tb_configuracoes_pessoais.belongsTo(infoc_atn_tb_pessoal, { as: "id_pessoal_infoc_atn_tb_pessoal", foreignKey: "id_pessoal"});
-  infoc_atn_tb_pessoal.hasMany(infoc_atn_tb_configuracoes_pessoais, { as: "infoc_atn_tb_configuracoes_pessoais", foreignKey: "id_pessoal"});
-  infoc_atn_tb_curriculo.belongsTo(infoc_atn_tb_pessoal, { as: "id_pessoal_infoc_atn_tb_pessoal", foreignKey: "id_pessoal"});
-  infoc_atn_tb_pessoal.hasMany(infoc_atn_tb_curriculo, { as: "infoc_atn_tb_curriculos", foreignKey: "id_pessoal"});
-  infoc_atn_tb_sala.belongsTo(infoc_atn_tb_pessoal, { as: "id_pessoal_infoc_atn_tb_pessoal", foreignKey: "id_pessoal"});
-  infoc_atn_tb_pessoal.hasMany(infoc_atn_tb_sala, { as: "infoc_atn_tb_salas", foreignKey: "id_pessoal"});
-  infoc_atn_tb_chat.belongsTo(infoc_atn_tb_sala, { as: "id_sala_infoc_atn_tb_sala", foreignKey: "id_sala"});
-  infoc_atn_tb_sala.hasMany(infoc_atn_tb_chat, { as: "infoc_atn_tb_chats", foreignKey: "id_sala"});
-  infoc_atn_tb_curriculo.belongsTo(infoc_atn_tb_vagas, { as: "id_vaga_infoc_atn_tb_vaga", foreignKey: "id_vaga"});
-  infoc_atn_tb_vagas.hasMany(infoc_atn_tb_curriculo, { as: "infoc_atn_tb_curriculos", foreignKey: "id_vaga"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_caracteristica_fisica, { as: "id_fisico_infoc_ntc_caracteristica_fisica", foreignKey: "id_fisico"});
   infoc_ntc_caracteristica_fisica.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_fisico"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_local, { as: "id_local_infoc_ntc_local", foreignKey: "id_local"});
@@ -483,7 +451,6 @@ export default function initModels(sequelize) {
   insf_tb_usuario_endereco.hasMany(insf_tb_usuario_endereco_uf, { as: "insf_tb_usuario_endereco_ufs", foreignKey: "id_usuario_endereco"});
 
   return {
-    atn_tb_vagas,
     infoa_dtn_tb_avaliacao,
     infoa_dtn_tb_cliente,
     infoa_dtn_tb_endereco,
@@ -588,12 +555,6 @@ export default function initModels(sequelize) {
     infoc_tdv_livro,
     infoc_tdv_pedido,
     infoc_tdv_pedido_item,
-    infoc_tht_cartao,
-    infoc_tht_chat,
-    infoc_tht_compra,
-    infoc_tht_lugar,
-    infoc_tht_pacote,
-    infoc_tht_usuario,
     infod_leo_agendamento,
     infod_leo_cliente,
     infod_leo_funcionario,
