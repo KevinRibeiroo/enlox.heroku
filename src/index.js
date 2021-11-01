@@ -135,7 +135,7 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: produto.categoria,//categorias foram criadas; id de 1 a 8
+                id_categoria: 7,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
                 ds_imagem1: produto.img,
                 ds_imagem2: produto.img2,
@@ -144,7 +144,7 @@ app.post('/produto/:id', async (req, resp) => {
                 nm_produto: produto.nm_produto,
                 vl_preco: produto.vl_preco,
                 ds_produto: produto.ds_produto,
-                bt_ativo: produto.ativ,
+                bt_ativo: true,
                 nr_media_avaliacao: 1,
                 nr_avaliacao: produto.nr_avaliacao,
                 nr_desconto: produto.desc
@@ -202,7 +202,6 @@ app.get('/produto', async (req, resp) => {
         resp.send({error: "erro ao listar "})
     }
 })
-
 
 
 // alterar produto
@@ -323,7 +322,7 @@ app.delete('/chat_usu/:id', async (req, resp) => {
 
 
 
-app.post('/login', async (req, resp) => {
+app.post('/login2', async (req, resp) => {
     try {
         let login = req.body;
 
@@ -404,8 +403,8 @@ app.post('/chat/:id/:id2', async (req, resp) => {
 app.get('/chat/:id/:id2', async (req, resp) => {
     try {
         let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
-            where: {id_usuario_comprador: req.params.id, id_usuario_vendedor: req.params.id2}
-        });
+            where: { [Op.or]: [{id_usuario_comprador: req.params.id, id_usuario_vendedor: req.params.id2}, {id_usuario_comprador: req.params.id2, id_usuario_vendedor: req.params.id}]
+        }});
 
         let chat = await db.infoa_enl_chat.findAll({where: {id_chat_usuario: id_chat_usu.id_chat_usuario},
             include: [
