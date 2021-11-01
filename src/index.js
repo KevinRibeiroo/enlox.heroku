@@ -134,7 +134,7 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: 7,//categorias foram criadas; id de 1 a 7
+                id_categoria: produto.categoria,//categorias foram criadas; id de 1 a 8
                 id_usuario: id,
                 ds_imagem1: produto.img,
                 ds_imagem2: produto.img2,
@@ -143,7 +143,7 @@ app.post('/produto/:id', async (req, resp) => {
                 nm_produto: produto.nm_produto,
                 vl_preco: produto.vl_preco,
                 ds_produto: produto.ds_produto,
-                bt_ativo: true,
+                bt_ativo: produto.ativ,
                 nr_media_avaliacao: 1,
                 nr_avaliacao: produto.nr_avaliacao,
                 nr_desconto: produto.desc
@@ -189,6 +189,7 @@ app.get('/produto', async (req, resp) => {
         resp.send({error: "erro ao listar "})
     }
 })
+
 
 
 // alterar produto
