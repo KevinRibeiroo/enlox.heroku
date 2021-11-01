@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import Sequelize from 'sequelize'
 
+
 const {Op, col} = Sequelize;
 
 
@@ -49,7 +50,7 @@ app.use(express.json());
             ds_bairro: "vish",
             ds_cidade: "eita",
             bt_sexo: 1,
-            img_foto: "https://i.pinimg.com/236x/6c/cf/2e/6ccf2ee10374442a30e79a8cf6c20fc2.jpg",
+            img_foto: usu.img,
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true
@@ -100,6 +101,20 @@ app.get('/usuario/:id', async (req, resp) => {
 
 
 
+app.put('/usuario/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+        const usu = req.body;
+
+        const r = await db.infoa_enl_usuario.update({img_foto: usu.img},{where: {id_usuario: id}})
+
+
+        resp.send(r);
+
+    } catch (error) {
+        resp.send({error: "erro ao alterar o usuario"})
+    }
+})
 
 
 
@@ -294,7 +309,7 @@ app.delete('/chat_usu/:id', async (req, resp) => {
 
 
 
-app.post('/login2', async (req, resp) => {
+app.post('/login', async (req, resp) => {
     try {
         let login = req.body;
 
