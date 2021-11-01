@@ -53,7 +53,8 @@ app.use(express.json());
             img_foto: usu.img,
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
-            bt_ativo: true
+            bt_ativo: true,
+            dt_ult_login:Date.now()
         });
 
         resp.send(r);

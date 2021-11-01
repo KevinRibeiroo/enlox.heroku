@@ -77,6 +77,10 @@ export default class infoa_enl_usuario extends Model {
     bt_ativo: {
       type: DataTypes.TINYINT,
       allowNull: false
+    },
+    dt_ult_login: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     sequelize,
