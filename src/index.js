@@ -310,7 +310,7 @@ app.delete('/chat_usu/:id', async (req, resp) => {
 
 
 
-app.post('/login2', async (req, resp) => {
+app.post('/login', async (req, resp) => {
     try {
         let login = req.body;
 
@@ -320,6 +320,11 @@ app.post('/login2', async (req, resp) => {
                 ds_senha: login.ds_senha
             }, raw: true});
 
+
+        let lastLogin = await db.infoa_enl_usuario.update({dt_ult_login: Date.now()}, 
+        {where: {
+            id_usuario: logar.id_usuario
+        }})
         resp.send(logar);
 
     } catch (error) {
