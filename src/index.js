@@ -182,7 +182,7 @@ app.get('/produto/:id', async (req, resp) => {
 app.get('/produtos/:id',async (req,resp) =>{
     try {
         let id = req.params.id;
-        let r = await db.infoa_enl_produto.findOne({where:{id_categoria:id}});
+        let r = await db.infoa_enl_produto.findAll({where:{id_categoria:id}});
         resp.send(r);
     } catch (error) {
         resp.send({error:"Produto não encontrado."})
