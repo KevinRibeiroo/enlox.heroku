@@ -135,7 +135,7 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: 7,//categorias foram criadas; id de 1 a 7
+                id_categoria: 2,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
                 ds_imagem1: produto.img,
                 ds_imagem2: produto.img2,
@@ -194,7 +194,10 @@ app.get('/produtos/:id',async (req,resp) =>{
 
 app.get('/produto', async (req, resp) => {
     try {
-        let consul = await db.infoa_enl_produto.findAll();
+        let consul = await db.infoa_enl_produto.findAll({
+            order:[
+                ['nr_desconto','desc']]
+        });
 
 
         resp.send(consul);
