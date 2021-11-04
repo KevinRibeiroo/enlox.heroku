@@ -43,12 +43,12 @@ app.use(express.json());
             nr_telefone: usu.nr_telefone,
             ds_email: usu.ds_email,
             ds_senha: usu.ds_senha,
-            dt_nascimento: Date.now(),
+            dt_nascimento: usu.nascimento,
             ds_cep:  usu.ds_cep,
             nr_casa: usu.nr_casa,
             ds_complemento: usu.ds_complemento,
-            ds_bairro: "vish",
-            ds_cidade: "eita",
+            ds_bairro: usu.bairro,
+            ds_cidade: usu.cidade,
             bt_sexo: 1,
             img_foto: usu.img,
             dt_cadastro: Date.now(),
@@ -99,6 +99,16 @@ app.get('/usuario/:id', async (req, resp) => {
     }
 });
 
+
+
+app.get('/usuario', async (req, resp) => {
+    try {
+        let consul = await db.infoa_enl_usuario.findAll();
+        resp.send(consul);
+    } catch (error) {
+        resp.send({error: "erro ao listar "})
+    }
+})
 
 
 
