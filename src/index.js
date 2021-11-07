@@ -332,7 +332,7 @@ app.delete('/chat_usu/:id', async (req, resp) => {
     }
 })
 
-app.get('/chat_usu/:id_chat_usu', async (req, resp) => {
+app.get('/chat_usu2/:id_chat_usu', async (req, resp) => {
         try {
             let id = req.params.id_chat_usu;
 
