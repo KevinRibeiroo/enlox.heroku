@@ -332,6 +332,29 @@ app.delete('/chat_usu/:id', async (req, resp) => {
     }
 })
 
+app.get('/chat_usu/:id_chat_usu', async (req, resp) => {
+        try {
+            let id = req.params.id_chat_usu;
+
+            let listar = await db.infoa_enl_chat_usuario.findOne({where: {id_chat_usuario: id}, 
+            include: [
+                {
+                    model: db.infoa_enl_usuario,
+                    as: "id_usuario_vendedor_infoa_enl_usuario" , 
+                    required: true
+                    },
+                    {
+                        model: db.infoa_enl_usuario,
+                        as: "id_usuario_comprador_infoa_enl_usuario" , 
+                        required: true
+                    }
+            ]});
+
+            resp.send(listar);
+        } catch (error) {
+            resp.send({error: 'erro ao listar os chat'})
+        }
+});
 
 
 
