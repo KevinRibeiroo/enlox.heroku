@@ -420,15 +420,18 @@ app.post('/chat/:id/:id2', async (req, resp) => {
         //let consul = await db.infoa_enl_chat.findOne({where: {id_usuario: id}})
 
         
-        let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
-            where: {id_usuario_comprador: id, id_usuario_vendedor: req.params.id2}
-        });
+        //let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
+            //where: {id_usuario_comprador: id, id_usuario_vendedor: req.params.id2}
+        //});
 
         let r = await db.infoa_enl_chat.create({
             id_usuario: id,
-            id_chat_usuario: id_chat_usu.id_chat_usuario,
+            id_chat_usuario: req.params.id2,
             ds_mensagem: chat.msg,
             dt_mensagem: new Date()
+        }, 
+        {
+            where: {id_chat_usuario: req.params.id2}
         });
 
 
@@ -441,13 +444,13 @@ app.post('/chat/:id/:id2', async (req, resp) => {
 
 
 
-app.get('/chat/:id/:id2', async (req, resp) => {
+app.get('/chat/:id', async (req, resp) => {
     try {
-        let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
-            where: { [Op.or]: [{id_usuario_comprador: req.params.id, id_usuario_vendedor: req.params.id2}, {id_usuario_comprador: req.params.id2, id_usuario_vendedor: req.params.id}]
-        }});
+        //let id_chat_usu = await db.infoa_enl_chat_usuario.findOne({
+          //  where: { [Op.or]: [{id_usuario_comprador: req.params.id, id_usuario_vendedor: req.params.id2}, {id_usuario_comprador: req.params.id2, id_usuario_vendedor: req.params.id}]
+        //}});
 
-        let chat = await db.infoa_enl_chat.findAll({where: {id_chat_usuario: id_chat_usu.id_chat_usuario},
+        let chat = await db.infoa_enl_chat.findAll({where: {id_chat_usuario: req.params.id},
             include: [
                 {
                     model: db.infoa_enl_chat_usuario,
