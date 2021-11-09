@@ -174,11 +174,11 @@ app.post('/produto/:id', async (req, resp) => {
 
 // listar  os produttoos
 
-app.get('/produto/:id', async (req, resp) => {
+app.get('/produtoss/:id', async (req, resp) => {
     try {
         let id = req.params.id;
 
-        let list = await db.infoa_enl_produto.findOne({where: {id_usuario: id}});
+        let list = await db.infoa_enl_produto.findAll({where: {id_usuario: id}});
 
 
         resp.send(list);
