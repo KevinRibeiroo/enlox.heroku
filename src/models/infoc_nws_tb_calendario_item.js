@@ -5,18 +5,14 @@ export default class infoc_nws_tb_calendario_item extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_calendario_item: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_calendario: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_nws_tb_calendario',
-        key: 'id_calendario'
-      }
+      allowNull: true
     },
     hr_evento: {
       type: DataTypes.TIME,

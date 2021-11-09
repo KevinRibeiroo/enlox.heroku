@@ -5,26 +5,18 @@ export default class infoc_tcc_venda extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_venda: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_produto: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_tcc_produto',
-        key: 'id_produto'
-      }
+      allowNull: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_tcc_cliente',
-        key: 'id_cliente'
-      }
+      allowNull: true
     },
     dt_compra: {
       type: DataTypes.DATEONLY,

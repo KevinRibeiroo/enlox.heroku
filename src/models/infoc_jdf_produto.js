@@ -1,50 +1,46 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infod_omn_empresa extends Model {
+export default class infoc_jdf_produto extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_empresa: {
+    id_produto: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_empresa: {
+    nm_produto: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_email: {
+    vl_produto: {
+      type: DataTypes.DECIMAL(15,2),
+      allowNull: true
+    },
+    ds_produto: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_senha: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_cnpj: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_localidade: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_area_atuacao: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_porte: {
+    ds_categoria: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
     ds_imagem: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    bt_maisVendidos: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    nr_codigo: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infod_omn_empresa',
+    tableName: 'infoc_jdf_produto',
     timestamps: false,
     indexes: [
       {
@@ -52,11 +48,11 @@ export default class infod_omn_empresa extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_empresa" },
+          { name: "id_produto" },
         ]
       },
     ]
   });
-  return infod_omn_empresa;
+  return infoc_jdf_produto;
   }
 }

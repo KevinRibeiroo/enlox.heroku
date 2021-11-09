@@ -5,18 +5,14 @@ export default class infoa_gab_venda extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_venda: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'infoa_gab_usuario',
-        key: 'id_usuario'
-      }
+      allowNull: false
     },
     dt_venda: {
       type: DataTypes.DATE,
@@ -31,7 +27,7 @@ export default class infoa_gab_venda extends Model {
       allowNull: false
     },
     ds_pagamento: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(8000),
       allowNull: false
     },
     vl_total: {

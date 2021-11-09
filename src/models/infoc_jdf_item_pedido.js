@@ -1,42 +1,26 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_tdv_endereco extends Model {
+export default class infoc_jdf_item_pedido extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_endereco: {
+    id_itemPedido: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    id_cliente: {
+    id_pedido: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    nm_rua: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_cep: {
-      type: DataTypes.STRING(16),
-      allowNull: true
-    },
-    ds_numero: {
+    id_produto: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    ds_bairro: {
-      type: DataTypes.STRING(200),
-      allowNull: true
-    },
-    ds_complemento: {
-      type: DataTypes.STRING(200),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_tdv_endereco',
+    tableName: 'infoc_jdf_item_pedido',
     timestamps: false,
     indexes: [
       {
@@ -44,18 +28,25 @@ export default class infoc_tdv_endereco extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_endereco" },
+          { name: "id_itemPedido" },
         ]
       },
       {
-        name: "id_cliente",
+        name: "id_produto",
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
+          { name: "id_produto" },
+        ]
+      },
+      {
+        name: "id_pedido",
+        using: "BTREE",
+        fields: [
+          { name: "id_pedido" },
         ]
       },
     ]
   });
-  return infoc_tdv_endereco;
+  return infoc_jdf_item_pedido;
   }
 }

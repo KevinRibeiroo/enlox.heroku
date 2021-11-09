@@ -14,7 +14,63 @@ app.use(cors());
 app.use(express.json());
 
 
+app.get('/vistorecentemente', async (req, resp) => {
+    const { id } = req.query;
+    try {
+        const r = await db.infoa_enl_visto_recentemente.findAll({
+            raw: true,
+            where: { 'id_usuario': id },
+            order: [['dt_visualizacao', 'desc']],
+            limit: 10,
+            include: [
+                {
+                    model: db.infoa_enl_produto,
+                    as: 'id_produto_infoa_enl_produto',
+                    required: true,
+                    //attributes: []
+                }
+            ],
+            attributes: []
+        })
 
+        const result = r.map(item => { return {
+            "id_produto": item.id_produto_infoa_enl_produto.id_produto,
+            "id_categoria": item.id_produto_infoa_enl_produto.id_categoria,
+            "id_usuario": item.id_produto_infoa_enl_produto.id_usuario,
+            "ds_imagem1": item.id_produto_infoa_enl_produto.ds_imagem1,
+            "ds_imagem2": item.id_produto_infoa_enl_produto.ds_imagem2,
+            "ds_imagem3": item.id_produto_infoa_enl_produto.ds_imagem3,
+            "ds_imagem4": item.id_produto_infoa_enl_produto.ds_imagem4,
+            "nm_produto": item.id_produto_infoa_enl_produto.nm_produto,
+            "vl_preco": item.id_produto_infoa_enl_produto.vl_preco,
+            "ds_produto": item.id_produto_infoa_enl_produto.ds_produto,
+            "bt_ativo": item.id_produto_infoa_enl_produto.bt_ativo,
+            "nr_media_avaliacao": item.id_produto_infoa_enl_produto.nr_media_avaliacao,
+            "nr_avaliacao": item.id_produto_infoa_enl_produto.nr_avaliacao,
+            "nr_desconto": item.id_produto_infoa_enl_produto.nr_desconto
+        }})
+
+        resp.send(r);
+    } catch (e) {
+        console.log(e);
+        resp.send({ error: 'Deu ruimmmm'})
+    }
+})
+
+app.post('/vistorecentemente', async (req, resp) => {
+    const { usuario, produto } = req.body;
+    try {
+        const r = await db.infoa_enl_visto_recentemente.create({
+            id_usuario: usuario,
+            id_produto: produto,
+            dt_visualizacao: Date.now()
+        })
+        resp.sendStatus(200);
+    } catch (e) {
+        resp.send({ error: 'Deu ruim'})
+    }
+
+})
 
 
 

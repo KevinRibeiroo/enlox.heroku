@@ -1,34 +1,38 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infod_tif_chat extends Model {
+export default class infoa_enl_visto_recentemente extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_chat: {
+    id_visto_recentemente: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoa_enl_usuario',
+        key: 'id_usuario'
+      }
     },
-    id_comunidade: {
+    id_produto: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoa_enl_produto',
+        key: 'id_produto'
+      }
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    dt_mensagem: {
+    dt_visualizacao: {
       type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infod_tif_chat',
+    tableName: 'infoa_enl_visto_recentemente',
     timestamps: false,
     indexes: [
       {
@@ -36,7 +40,7 @@ export default class infod_tif_chat extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_chat" },
+          { name: "id_visto_recentemente" },
         ]
       },
       {
@@ -47,14 +51,14 @@ export default class infod_tif_chat extends Model {
         ]
       },
       {
-        name: "id_comunidade",
+        name: "id_produto",
         using: "BTREE",
         fields: [
-          { name: "id_comunidade" },
+          { name: "id_produto" },
         ]
       },
     ]
   });
-  return infod_tif_chat;
+  return infoa_enl_visto_recentemente;
   }
 }

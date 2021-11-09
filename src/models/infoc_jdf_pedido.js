@@ -1,34 +1,34 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infod_tif_comunidade extends Model {
+export default class infoc_jdf_pedido extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_comunidade: {
+    id_pedido: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_usuario: {
+    id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true,
+      references: {
+        model: 'infoc_jdf_cliente',
+        key: 'id_cliente'
+      }
     },
-    ds_capa: {
-      type: DataTypes.STRING(1555),
-      allowNull: false
-    },
-    nm_comunidade: {
+    ds_formaPagamento: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
-    dt_criacao: {
-      type: DataTypes.DATE,
-      allowNull: false
+    ds_status: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infod_tif_comunidade',
+    tableName: 'infoc_jdf_pedido',
     timestamps: false,
     indexes: [
       {
@@ -36,18 +36,18 @@ export default class infod_tif_comunidade extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_comunidade" },
+          { name: "id_pedido" },
         ]
       },
       {
-        name: "id_usuario",
+        name: "id_cliente",
         using: "BTREE",
         fields: [
-          { name: "id_usuario" },
+          { name: "id_cliente" },
         ]
       },
     ]
   });
-  return infod_tif_comunidade;
+  return infoc_jdf_pedido;
   }
 }

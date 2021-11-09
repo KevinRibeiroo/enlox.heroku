@@ -1,16 +1,28 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infod_omn_empresa extends Model {
+export default class infoc_jdf_cliente extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_empresa: {
+    id_cliente: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nm_empresa: {
+    id_cartao: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'infoc_jdf_cartao',
+        key: 'id_cartao'
+      }
+    },
+    nm_cliente: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    nr_telefone: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -18,33 +30,25 @@ export default class infod_omn_empresa extends Model {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_senha: {
+    ds_senhaEmail: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_cnpj: {
+    ds_endereco: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    ds_localidade: {
-      type: DataTypes.STRING(255),
+    nr_endereco: {
+      type: DataTypes.INTEGER,
       allowNull: true
     },
-    ds_area_atuacao: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_porte: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ds_imagem: {
+    ds_complemento: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infod_omn_empresa',
+    tableName: 'infoc_jdf_cliente',
     timestamps: false,
     indexes: [
       {
@@ -52,11 +56,18 @@ export default class infod_omn_empresa extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_empresa" },
+          { name: "id_cliente" },
+        ]
+      },
+      {
+        name: "id_cartao",
+        using: "BTREE",
+        fields: [
+          { name: "id_cartao" },
         ]
       },
     ]
   });
-  return infod_omn_empresa;
+  return infoc_jdf_cliente;
   }
 }

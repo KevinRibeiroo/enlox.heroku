@@ -1,70 +1,54 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_tct_cliente extends Model {
+export default class infoc_tht_usuario extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cliente: {
+    id_usuario: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_endereco: {
+    id_login: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoc_tct_endereco',
-        key: 'id_endereco'
+        model: 'infoc_tht_login',
+        key: 'id_login'
       }
     },
     id_cartao: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'infoc_tct_cartao',
+        model: 'infoc_tht_cartao',
         key: 'id_cartao'
       }
     },
-    nm_nome: {
+    nm_usuario: {
       type: DataTypes.STRING(30),
       allowNull: true
     },
     ds_email: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
-    ds_senha: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    ds_genero: {
-      type: DataTypes.STRING(10),
+    nr_celular: {
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     dt_nascimento: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-    ds_telefone: {
-      type: DataTypes.STRING(11),
-      allowNull: true
-    },
-    ds_cpf: {
-      type: DataTypes.STRING(14),
-      allowNull: true
-    },
-    bt_administrador: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true
-    },
-    ds_login: {
-      type: DataTypes.STRING(20),
+    ds_senha: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_tct_cliente',
+    tableName: 'infoc_tht_usuario',
     timestamps: false,
     indexes: [
       {
@@ -72,14 +56,14 @@ export default class infoc_tct_cliente extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_cliente" },
+          { name: "id_usuario" },
         ]
       },
       {
-        name: "id_endereco",
+        name: "id_login",
         using: "BTREE",
         fields: [
-          { name: "id_endereco" },
+          { name: "id_login" },
         ]
       },
       {
@@ -91,6 +75,6 @@ export default class infoc_tct_cliente extends Model {
       },
     ]
   });
-  return infoc_tct_cliente;
+  return infoc_tht_usuario;
   }
 }

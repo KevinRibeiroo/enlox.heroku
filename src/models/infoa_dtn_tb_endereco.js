@@ -5,18 +5,14 @@ export default class infoa_dtn_tb_endereco extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_endereco: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_dtn_tb_cliente',
-        key: 'id_cliente'
-      }
+      allowNull: true
     },
     nm_cidade: {
       type: DataTypes.STRING(200),

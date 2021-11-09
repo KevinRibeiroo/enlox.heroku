@@ -24,31 +24,15 @@ export default class infod_tif_usuario extends Model {
     },
     ds_telefone: {
       type: DataTypes.STRING(19),
-      allowNull: false
+      allowNull: true
     },
     dt_criacao: {
       type: DataTypes.DATE,
-      allowNull: false
-    },
-    bt_login_face: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    bt_login_insta: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    bt_login_google: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    bt_online: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     ds_perfil: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,

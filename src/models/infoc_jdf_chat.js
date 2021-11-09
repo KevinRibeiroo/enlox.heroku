@@ -1,34 +1,38 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infod_tif_comunidade extends Model {
+export default class infoc_jdf_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_comunidade: {
+    id_chat: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_usuario: {
+    id_pedido: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true,
+      references: {
+        model: 'infoc_jdf_pedido',
+        key: 'id_pedido'
+      }
     },
-    ds_capa: {
-      type: DataTypes.STRING(1555),
-      allowNull: false
-    },
-    nm_comunidade: {
+    ds_mensagem: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
-    dt_criacao: {
+    dt_mensagem: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
+    },
+    bt_enviadoAdm: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infod_tif_comunidade',
+    tableName: 'infoc_jdf_chat',
     timestamps: false,
     indexes: [
       {
@@ -36,18 +40,18 @@ export default class infod_tif_comunidade extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_comunidade" },
+          { name: "id_chat" },
         ]
       },
       {
-        name: "id_usuario",
+        name: "id_pedido",
         using: "BTREE",
         fields: [
-          { name: "id_usuario" },
+          { name: "id_pedido" },
         ]
       },
     ]
   });
-  return infod_tif_comunidade;
+  return infoc_jdf_chat;
   }
 }
