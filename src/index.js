@@ -109,7 +109,7 @@ app.post('/vistorecentemente', async (req, resp) => {
             dt_alteracao: Date.now(),
             bt_ativo: true,
             dt_ult_login:Date.now(),
-            nm_rua:usu.rua
+            nm_rua: usu.rua
         });
 
         resp.send(r);
@@ -190,7 +190,7 @@ app.put('/usuario/:id', async (req, resp) => {
 // inserir um produto 
 
 
-app.post('/produto/:id', async (req, resp) => {
+app.post('/produto/:id/:id2', async (req, resp) => {
     try {
         
         let produto = req.body;
@@ -200,7 +200,7 @@ app.post('/produto/:id', async (req, resp) => {
 
 
         let r = await db.infoa_enl_produto.create({
-                id_categoria: 2,//categorias foram criadas; id de 1 a 7
+                id_categoria: req.params.id2,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
                 ds_imagem1: produto.img,
                 ds_imagem2: produto.img2,
