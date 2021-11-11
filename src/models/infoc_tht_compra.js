@@ -5,18 +5,26 @@ export default class infoc_tht_compra extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_compra: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_pacote: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoc_tht_pacote',
+        key: 'id_pacote'
+      }
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoc_tht_usuario',
+        key: 'id_usuario'
+      }
     },
     ds_aprovacao: {
       type: DataTypes.BOOLEAN,
@@ -29,7 +37,31 @@ export default class infoc_tht_compra extends Model {
   }, {
     sequelize,
     tableName: 'infoc_tht_compra',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_compra" },
+        ]
+      },
+      {
+        name: "id_pacote",
+        using: "BTREE",
+        fields: [
+          { name: "id_pacote" },
+        ]
+      },
+      {
+        name: "id_usuario",
+        using: "BTREE",
+        fields: [
+          { name: "id_usuario" },
+        ]
+      },
+    ]
   });
   return infoc_tht_compra;
   }

@@ -21,7 +21,31 @@ export default class infob_mw_lista_item extends Model {
   }, {
     sequelize,
     tableName: 'infob_mw_lista_item',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_lista_item" },
+        ]
+      },
+      {
+        name: "id_lista",
+        using: "BTREE",
+        fields: [
+          { name: "id_lista" },
+        ]
+      },
+      {
+        name: "id_filme",
+        using: "BTREE",
+        fields: [
+          { name: "id_filme" },
+        ]
+      },
+    ]
   });
   return infob_mw_lista_item;
   }

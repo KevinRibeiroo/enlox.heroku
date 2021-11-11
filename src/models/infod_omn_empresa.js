@@ -5,10 +5,10 @@ export default class infod_omn_empresa extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_empresa: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     nm_empresa: {
       type: DataTypes.STRING(255),

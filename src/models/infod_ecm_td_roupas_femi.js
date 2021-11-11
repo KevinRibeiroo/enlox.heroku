@@ -33,7 +33,24 @@ export default class infod_ecm_td_roupas_femi extends Model {
   }, {
     sequelize,
     tableName: 'infod_ecm_td_roupas_femi',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_roupa_femi" },
+        ]
+      },
+      {
+        name: "id_categoria",
+        using: "BTREE",
+        fields: [
+          { name: "id_categoria" },
+        ]
+      },
+    ]
   });
   return infod_ecm_td_roupas_femi;
   }

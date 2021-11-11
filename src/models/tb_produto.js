@@ -53,7 +53,17 @@ export default class tb_produto extends Model {
   }, {
     sequelize,
     tableName: 'tb_produto',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_produto" },
+        ]
+      },
+    ]
   });
   return tb_produto;
   }

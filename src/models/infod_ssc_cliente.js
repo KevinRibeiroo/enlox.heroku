@@ -49,7 +49,24 @@ export default class infod_ssc_cliente extends Model {
   }, {
     sequelize,
     tableName: 'infod_ssc_cliente',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_cliente" },
+        ]
+      },
+      {
+        name: "id_endereco",
+        using: "BTREE",
+        fields: [
+          { name: "id_endereco" },
+        ]
+      },
+    ]
   });
   return infod_ssc_cliente;
   }

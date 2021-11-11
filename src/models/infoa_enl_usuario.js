@@ -89,7 +89,17 @@ export default class infoa_enl_usuario extends Model {
   }, {
     sequelize,
     tableName: 'infoa_enl_usuario',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_usuario" },
+        ]
+      },
+    ]
   });
   return infoa_enl_usuario;
   }

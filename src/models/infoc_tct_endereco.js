@@ -5,10 +5,10 @@ export default class infoc_tct_endereco extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_endereco: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     ds_cep: {
       type: DataTypes.STRING(9),

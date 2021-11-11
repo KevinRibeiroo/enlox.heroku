@@ -5,10 +5,10 @@ export default class infod_tif_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_chat: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,
@@ -29,7 +29,31 @@ export default class infod_tif_chat extends Model {
   }, {
     sequelize,
     tableName: 'infod_tif_chat',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_chat" },
+        ]
+      },
+      {
+        name: "id_usuario",
+        using: "BTREE",
+        fields: [
+          { name: "id_usuario" },
+        ]
+      },
+      {
+        name: "id_comunidade",
+        using: "BTREE",
+        fields: [
+          { name: "id_comunidade" },
+        ]
+      },
+    ]
   });
   return infod_tif_chat;
   }

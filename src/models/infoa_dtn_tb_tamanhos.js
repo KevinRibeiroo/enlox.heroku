@@ -5,15 +5,25 @@ export default class infoa_dtn_tb_tamanhos extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_tamanho: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     }
   }, {
     sequelize,
     tableName: 'infoa_dtn_tb_tamanhos',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_tamanho" },
+        ]
+      },
+    ]
   });
   return infoa_dtn_tb_tamanhos;
   }

@@ -5,10 +5,10 @@ export default class infob_hdm_esqueci_senha_adm extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_HDM_esqueci_senha: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     nr_HDM_senha_adm: {
       type: DataTypes.BOOLEAN,
@@ -21,7 +21,17 @@ export default class infob_hdm_esqueci_senha_adm extends Model {
   }, {
     sequelize,
     tableName: 'infob_hdm_esqueci_senha_adm',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_HDM_esqueci_senha" },
+        ]
+      },
+    ]
   });
   return infob_hdm_esqueci_senha_adm;
   }

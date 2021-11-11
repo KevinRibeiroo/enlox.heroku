@@ -5,10 +5,10 @@ export default class infoc_jdf_cartao extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_cartao: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     nr_cartao: {
       type: DataTypes.STRING(255),

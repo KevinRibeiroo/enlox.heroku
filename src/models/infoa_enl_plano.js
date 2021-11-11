@@ -5,10 +5,10 @@ export default class infoa_enl_plano extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_plano: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     vl_plano: {
       type: DataTypes.DECIMAL(5,2),

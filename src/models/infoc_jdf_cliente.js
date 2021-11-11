@@ -49,7 +49,24 @@ export default class infoc_jdf_cliente extends Model {
   }, {
     sequelize,
     tableName: 'infoc_jdf_cliente',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_cliente" },
+        ]
+      },
+      {
+        name: "id_cartao",
+        using: "BTREE",
+        fields: [
+          { name: "id_cartao" },
+        ]
+      },
+    ]
   });
   return infoc_jdf_cliente;
   }

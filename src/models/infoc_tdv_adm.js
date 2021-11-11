@@ -25,7 +25,17 @@ export default class infoc_tdv_adm extends Model {
   }, {
     sequelize,
     tableName: 'infoc_tdv_adm',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_adm" },
+        ]
+      },
+    ]
   });
   return infoc_tdv_adm;
   }

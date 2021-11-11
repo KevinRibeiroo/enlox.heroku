@@ -5,18 +5,14 @@ export default class infoa_enl_rank extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_rank: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_produto: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'infoa_enl_produto',
-        key: 'id_produto'
-      }
+      allowNull: false
     },
     qtd_clique: {
       type: DataTypes.DECIMAL(6,2),
@@ -29,7 +25,24 @@ export default class infoa_enl_rank extends Model {
   }, {
     sequelize,
     tableName: 'infoa_enl_rank',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_rank" },
+        ]
+      },
+      {
+        name: "id_produto",
+        using: "BTREE",
+        fields: [
+          { name: "id_produto" },
+        ]
+      },
+    ]
   });
   return infoa_enl_rank;
   }

@@ -5,18 +5,26 @@ export default class infoc_tct_compra extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_compra: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoc_tct_cliente',
+        key: 'id_cliente'
+      }
     },
     id_endereco: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoc_tct_endereco',
+        key: 'id_endereco'
+      }
     },
     ds_nota_fiscal: {
       type: DataTypes.STRING(50),
@@ -37,7 +45,31 @@ export default class infoc_tct_compra extends Model {
   }, {
     sequelize,
     tableName: 'infoc_tct_compra',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_compra" },
+        ]
+      },
+      {
+        name: "id_cliente",
+        using: "BTREE",
+        fields: [
+          { name: "id_cliente" },
+        ]
+      },
+      {
+        name: "id_endereco",
+        using: "BTREE",
+        fields: [
+          { name: "id_endereco" },
+        ]
+      },
+    ]
   });
   return infoc_tct_compra;
   }

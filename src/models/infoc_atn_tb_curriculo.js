@@ -5,10 +5,10 @@ export default class infoc_atn_tb_curriculo extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_curriculo: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_pessoal: {
       type: DataTypes.INTEGER,
@@ -29,7 +29,38 @@ export default class infoc_atn_tb_curriculo extends Model {
   }, {
     sequelize,
     tableName: 'infoc_atn_tb_curriculo',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_curriculo" },
+        ]
+      },
+      {
+        name: "id_empresa",
+        using: "BTREE",
+        fields: [
+          { name: "id_empresa" },
+        ]
+      },
+      {
+        name: "id_pessoal",
+        using: "BTREE",
+        fields: [
+          { name: "id_pessoal" },
+        ]
+      },
+      {
+        name: "id_vaga",
+        using: "BTREE",
+        fields: [
+          { name: "id_vaga" },
+        ]
+      },
+    ]
   });
   return infoc_atn_tb_curriculo;
   }

@@ -5,10 +5,10 @@ export default class infoc_atn_tb_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_chat: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_sala: {
       type: DataTypes.INTEGER,
@@ -29,7 +29,24 @@ export default class infoc_atn_tb_chat extends Model {
   }, {
     sequelize,
     tableName: 'infoc_atn_tb_chat',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_chat" },
+        ]
+      },
+      {
+        name: "id_sala",
+        using: "BTREE",
+        fields: [
+          { name: "id_sala" },
+        ]
+      },
+    ]
   });
   return infoc_atn_tb_chat;
   }

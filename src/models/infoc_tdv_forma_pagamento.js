@@ -5,14 +5,18 @@ export default class infoc_tdv_forma_pagamento extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_forma_pagamento: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'infoc_tdv_cliente',
+        key: 'id_cliente'
+      }
     },
     nr_cartao: {
       type: DataTypes.STRING(255),

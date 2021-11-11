@@ -5,10 +5,10 @@ export default class infoc_tcc_produto extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_produto: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     ds_genero: {
       type: DataTypes.STRING(255),

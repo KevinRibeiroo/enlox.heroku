@@ -93,7 +93,17 @@ export default class infob_apn_tb_pet extends Model {
   }, {
     sequelize,
     tableName: 'infob_apn_tb_pet',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "ID_PET" },
+        ]
+      },
+    ]
   });
   return infob_apn_tb_pet;
   }
