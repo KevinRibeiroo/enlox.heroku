@@ -19,16 +19,16 @@ export default class infoa_enl_usuario extends Model {
       allowNull: false
     },
     ds_senha: {
-      type: DataTypes.STRING(100),
-      allowNull: false
+      type: DataTypes.STRING(10),
+      allowNull: true
     },
     ds_email: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
     ds_cpf: {
-      type: DataTypes.STRING(11),
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     nr_celular: {
       type: DataTypes.STRING(15),
@@ -81,6 +81,10 @@ export default class infoa_enl_usuario extends Model {
     dt_ult_login: {
       type: DataTypes.DATE,
       allowNull: false
+    },
+    nm_rua: {
+      type: DataTypes.STRING(100),
+      allowNull: true
     }
   }, {
     sequelize,
