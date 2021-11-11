@@ -1,13 +1,19 @@
 import _sequelize from "sequelize";
 const DataTypes = _sequelize.DataTypes;
-import _infoa_dtn_tb_adm from  "./infoa_dtn_tb_adm.js";
-import _infoa_dtn_tb_avaliacao from  "./infoa_dtn_tb_avaliacao.js";
-import _infoa_dtn_tb_cliente from  "./infoa_dtn_tb_cliente.js";
-import _infoa_dtn_tb_endereco from  "./infoa_dtn_tb_endereco.js";
-import _infoa_dtn_tb_favoritos from  "./infoa_dtn_tb_favoritos.js";
-import _infoa_dtn_tb_produto from  "./infoa_dtn_tb_produto.js";
-import _infoa_dtn_tb_tamanhos from  "./infoa_dtn_tb_tamanhos.js";
-import _infoa_dtn_tb_venda from  "./infoa_dtn_tb_venda.js";
+import _infoa_dtb_tb_cliente from  "./infoa_dtb_tb_cliente.js.js";
+import _infoa_dtb_tb_genero from  "./infoa_dtb_tb_genero.js.js";
+import _infoa_dtb_tb_livro from  "./infoa_dtb_tb_livro.js.js";
+import _infoa_dtb_tb_venda from  "./infoa_dtb_tb_venda.js.js";
+import _infoa_dtb_tb_venda_item from  "./infoa_dtb_tb_venda_item.js.js";
+import _infoa_dtn_tb_avaliacao from  "./infoa_dtn_tb_avaliacao.js.js";
+import _infoa_dtn_tb_cliente from  "./infoa_dtn_tb_cliente.js.js";
+import _infoa_dtn_tb_endereco from  "./infoa_dtn_tb_endereco.js.js";
+import _infoa_dtn_tb_favoritos from  "./infoa_dtn_tb_favoritos.js.js";
+import _infoa_dtn_tb_produto from  "./infoa_dtn_tb_produto.js.js";
+import _infoa_dtn_tb_tamanhos from  "./infoa_dtn_tb_tamanhos.js.js";
+import _infoa_dtn_tb_usuarios_adm from  "./infoa_dtn_tb_usuarios_adm.js.js";
+import _infoa_dtn_tb_venda from  "./infoa_dtn_tb_venda.js.js";
+import _infoa_dtn_tb_venda_item from  "./infoa_dtn_tb_venda_item.js.js";
 import _infoa_enl_cartao_credito from  "./infoa_enl_cartao_credito.js";
 import _infoa_enl_categoria from  "./infoa_enl_categoria.js";
 import _infoa_enl_chat from  "./infoa_enl_chat.js";
@@ -20,24 +26,24 @@ import _infoa_enl_rank from  "./infoa_enl_rank.js";
 import _infoa_enl_reg_plano from  "./infoa_enl_reg_plano.js";
 import _infoa_enl_usuario from  "./infoa_enl_usuario.js";
 import _infoa_enl_visto_recentemente from  "./infoa_enl_visto_recentemente.js";
-import _infoa_gab_cartao from  "./infoa_gab_cartao.js";
-import _infoa_gab_endereco from  "./infoa_gab_endereco.js";
-import _infoa_gab_entrega from  "./infoa_gab_entrega.js";
-import _infoa_gab_produto from  "./infoa_gab_produto.js";
-import _infoa_gab_usuario from  "./infoa_gab_usuario.js";
-import _infoa_gab_venda from  "./infoa_gab_venda.js";
-import _infoa_gab_venda_item from  "./infoa_gab_venda_item.js";
-import _infoa_sti_categoria from  "./infoa_sti_categoria.js";
-import _infoa_sti_cliente from  "./infoa_sti_cliente.js";
-import _infoa_sti_cupom from  "./infoa_sti_cupom.js";
-import _infoa_sti_endereco from  "./infoa_sti_endereco.js";
-import _infoa_sti_produto from  "./infoa_sti_produto.js";
-import _infoa_sti_venda from  "./infoa_sti_venda.js";
-import _infoa_sti_venda_item from  "./infoa_sti_venda_item.js";
-import _infob_amz_tbdenuncia from  "./infob_amz_tbdenuncia.js";
-import _infob_amz_tbreporte_denuncia from  "./infob_amz_tbreporte_denuncia.js";
-import _infob_amz_tbusuario from  "./infob_amz_tbusuario.js";
-import _infob_apn_tb_adm from  "./infob_apn_tb_adm.js";
+import _infoa_gab_cartao from  "./infoa_gab_cartao.js.js";
+import _infoa_gab_endereco from  "./infoa_gab_endereco.js.js";
+import _infoa_gab_entrega from  "./infoa_gab_entrega.js.js";
+import _infoa_gab_produto from  "./infoa_gab_produto.js.js";
+import _infoa_gab_usuario from  "./infoa_gab_usuario.js.js";
+import _infoa_gab_venda from  "./infoa_gab_venda.js.js";
+import _infoa_gab_venda_item from  "./infoa_gab_venda_item.js.js";
+import _infoa_sti_categoria from  "./infoa_sti_categoria.js.js";
+import _infoa_sti_cliente from  "./infoa_sti_cliente.js.js";
+import _infoa_sti_cupom from  "./infoa_sti_cupom.js.js";
+import _infoa_sti_endereco from  "./infoa_sti_endereco.js.js";
+import _infoa_sti_produto from  "./infoa_sti_produto.js.js";
+import _infoa_sti_venda from  "./infoa_sti_venda.js.js";
+import _infoa_sti_venda_item from  "./infoa_sti_venda_item.js.js";
+import _infob_amz_tbdenuncia from  "./infob_amz_tbdenuncia.js.js";
+import _infob_amz_tbreporte_denuncia from  "./infob_amz_tbreporte_denuncia.js.js";
+import _infob_amz_tbusuario from  "./infob_amz_tbusuario.js.js";
+import _infob_apn_tb_adm from  "./infob_apn_tb_adm.js.js";
 import _infob_apn_tb_adocao from  "./infob_apn_tb_adocao.js";
 import _infob_apn_tb_pet from  "./infob_apn_tb_pet.js";
 import _infob_apn_tb_user from  "./infob_apn_tb_user.js";
@@ -46,124 +52,133 @@ import _infob_hdm_cadastro from  "./infob_hdm_cadastro.js";
 import _infob_hdm_cadastro_adm from  "./infob_hdm_cadastro_adm.js";
 import _infob_hdm_chat from  "./infob_hdm_chat.js";
 import _infob_hdm_chat_denuncias from  "./infob_hdm_chat_denuncias.js";
-import _infob_hdm_denuncia from  "./infob_hdm_denuncia.js";
-import _infob_hdm_esqueci_senha from  "./infob_hdm_esqueci_senha.js";
-import _infob_hdm_esqueci_senha_adm from  "./infob_hdm_esqueci_senha_adm.js";
-import _infob_hdm_login from  "./infob_hdm_login.js";
-import _infob_hdm_login_adm from  "./infob_hdm_login_adm.js";
-import _infob_hdm_mapa from  "./infob_hdm_mapa.js";
-import _infob_hdm_usuario from  "./infob_hdm_usuario.js";
-import _infob_mw_atores from  "./infob_mw_atores.js";
-import _infob_mw_comentarios from  "./infob_mw_comentarios.js";
-import _infob_mw_filme_usuario from  "./infob_mw_filme_usuario.js";
-import _infob_mw_filmes from  "./infob_mw_filmes.js";
-import _infob_mw_lista from  "./infob_mw_lista.js";
-import _infob_mw_lista_item from  "./infob_mw_lista_item.js";
-import _infob_mw_usuario from  "./infob_mw_usuario.js";
-import _infoc_atn_tb_chat from  "./infoc_atn_tb_chat.js";
-import _infoc_atn_tb_configuracoes_empresa from  "./infoc_atn_tb_configuracoes_empresa.js";
-import _infoc_atn_tb_configuracoes_pessoais from  "./infoc_atn_tb_configuracoes_pessoais.js";
-import _infoc_atn_tb_curriculo from  "./infoc_atn_tb_curriculo.js";
-import _infoc_atn_tb_empresa from  "./infoc_atn_tb_empresa.js";
-import _infoc_atn_tb_pessoal from  "./infoc_atn_tb_pessoal.js";
-import _infoc_atn_tb_sala from  "./infoc_atn_tb_sala.js";
-import _infoc_atn_tb_vagas from  "./infoc_atn_tb_vagas.js";
-import _infoc_jdf_adm from  "./infoc_jdf_adm.js";
-import _infoc_jdf_cartao from  "./infoc_jdf_cartao.js";
-import _infoc_jdf_chat from  "./infoc_jdf_chat.js";
-import _infoc_jdf_cliente from  "./infoc_jdf_cliente.js";
-import _infoc_jdf_item_pedido from  "./infoc_jdf_item_pedido.js";
-import _infoc_jdf_pedido from  "./infoc_jdf_pedido.js";
-import _infoc_jdf_produto from  "./infoc_jdf_produto.js";
-import _infoc_ntc_administrador from  "./infoc_ntc_administrador.js";
-import _infoc_ntc_apoio_frase from  "./infoc_ntc_apoio_frase.js";
-import _infoc_ntc_caracteristica_fisica from  "./infoc_ntc_caracteristica_fisica.js";
-import _infoc_ntc_denuncia from  "./infoc_ntc_denuncia.js";
-import _infoc_ntc_local from  "./infoc_ntc_local.js";
-import _infoc_ntc_usuario from  "./infoc_ntc_usuario.js";
-import _infoc_ntc_vestimento from  "./infoc_ntc_vestimento.js";
-import _infoc_nws_tb_calendario from  "./infoc_nws_tb_calendario.js";
-import _infoc_nws_tb_calendario_item from  "./infoc_nws_tb_calendario_item.js";
-import _infoc_nws_tb_cartao from  "./infoc_nws_tb_cartao.js";
-import _infoc_nws_tb_categoria from  "./infoc_nws_tb_categoria.js";
-import _infoc_nws_tb_evento from  "./infoc_nws_tb_evento.js";
-import _infoc_nws_tb_pix from  "./infoc_nws_tb_pix.js";
-import _infoc_nws_tb_usuario from  "./infoc_nws_tb_usuario.js";
-import _infoc_nws_tb_venda from  "./infoc_nws_tb_venda.js";
-import _infoc_nws_tb_venda_item from  "./infoc_nws_tb_venda_item.js";
-import _infoc_tcc_cliente from  "./infoc_tcc_cliente.js";
-import _infoc_tcc_endereco from  "./infoc_tcc_endereco.js";
-import _infoc_tcc_produto from  "./infoc_tcc_produto.js";
-import _infoc_tcc_venda from  "./infoc_tcc_venda.js";
-import _infoc_tcc_venda_item from  "./infoc_tcc_venda_item.js";
-import _infoc_tct_cartao from  "./infoc_tct_cartao.js";
-import _infoc_tct_categorias from  "./infoc_tct_categorias.js";
-import _infoc_tct_chat from  "./infoc_tct_chat.js";
-import _infoc_tct_cliente from  "./infoc_tct_cliente.js";
-import _infoc_tct_compra from  "./infoc_tct_compra.js";
-import _infoc_tct_compra_item from  "./infoc_tct_compra_item.js";
-import _infoc_tct_endereco from  "./infoc_tct_endereco.js";
-import _infoc_tct_produto from  "./infoc_tct_produto.js";
-import _infoc_tdv_adm from  "./infoc_tdv_adm.js";
-import _infoc_tdv_cliente from  "./infoc_tdv_cliente.js";
-import _infoc_tdv_cupom from  "./infoc_tdv_cupom.js";
-import _infoc_tdv_endereco from  "./infoc_tdv_endereco.js";
-import _infoc_tdv_favorito from  "./infoc_tdv_favorito.js";
-import _infoc_tdv_forma_pagamento from  "./infoc_tdv_forma_pagamento.js";
-import _infoc_tdv_genero from  "./infoc_tdv_genero.js";
-import _infoc_tdv_livro from  "./infoc_tdv_livro.js";
-import _infoc_tdv_pedido from  "./infoc_tdv_pedido.js";
-import _infoc_tdv_pedido_item from  "./infoc_tdv_pedido_item.js";
-import _infoc_tht_cadastro from  "./infoc_tht_cadastro.js";
-import _infoc_tht_cartao from  "./infoc_tht_cartao.js";
-import _infoc_tht_chat from  "./infoc_tht_chat.js";
-import _infoc_tht_compra from  "./infoc_tht_compra.js";
-import _infoc_tht_login from  "./infoc_tht_login.js";
-import _infoc_tht_lugar from  "./infoc_tht_lugar.js";
-import _infoc_tht_pacote from  "./infoc_tht_pacote.js";
-import _infoc_tht_usuario from  "./infoc_tht_usuario.js";
-import _infod_leo_agendamento from  "./infod_leo_agendamento.js";
-import _infod_leo_cliente from  "./infod_leo_cliente.js";
-import _infod_leo_funcionario from  "./infod_leo_funcionario.js";
-import _infod_leo_servico from  "./infod_leo_servico.js";
-import _infod_leo_servico_imagem from  "./infod_leo_servico_imagem.js";
-import _infod_omn_area_vaga from  "./infod_omn_area_vaga.js";
-import _infod_omn_candidato from  "./infod_omn_candidato.js";
-import _infod_omn_candidato_vaga from  "./infod_omn_candidato_vaga.js";
-import _infod_omn_curriculo from  "./infod_omn_curriculo.js";
-import _infod_omn_empresa from  "./infod_omn_empresa.js";
-import _infod_omn_vaga from  "./infod_omn_vaga.js";
-import _infod_ssc_adm from  "./infod_ssc_adm.js";
-import _infod_ssc_cliente from  "./infod_ssc_cliente.js";
-import _infod_ssc_endereco from  "./infod_ssc_endereco.js";
-import _infod_ssc_favoritos from  "./infod_ssc_favoritos.js";
-import _infod_ssc_item from  "./infod_ssc_item.js";
-import _infod_ssc_pedido from  "./infod_ssc_pedido.js";
-import _infod_ssc_produto from  "./infod_ssc_produto.js";
-import _infod_ssc_venda from  "./infod_ssc_venda.js";
-import _infod_tif_animes from  "./infod_tif_animes.js";
-import _infod_tif_chat from  "./infod_tif_chat.js";
-import _infod_tif_comentario from  "./infod_tif_comentario.js";
-import _infod_tif_comunidade from  "./infod_tif_comunidade.js";
-import _infod_tif_favoritos from  "./infod_tif_favoritos.js";
-import _infod_tif_usuario from  "./infod_tif_usuario.js";
-import _infod_tif_usuario_comunidade from  "./infod_tif_usuario_comunidade.js";
-import _insf_tb_produto from  "./insf_tb_produto.js";
-import _insf_tb_usuario from  "./insf_tb_usuario.js";
-import _insf_tb_usuario_endereco from  "./insf_tb_usuario_endereco.js";
-import _insf_tb_usuario_endereco_uf from  "./insf_tb_usuario_endereco_uf.js";
-import _tb_endereco from  "./tb_endereco.js";
-import _tb_produto from  "./tb_produto.js";
+import _infob_hdm_denuncia from  "./infob_hdm_denuncia.js.js";
+import _infob_hdm_esqueci_senha from  "./infob_hdm_esqueci_senha.js.js";
+import _infob_hdm_esqueci_senha_adm from  "./infob_hdm_esqueci_senha_adm.js.js";
+import _infob_hdm_login from  "./infob_hdm_login.js.js";
+import _infob_hdm_login_adm from  "./infob_hdm_login_adm.js.js";
+import _infob_hdm_mapa from  "./infob_hdm_mapa.js.js";
+import _infob_hdm_usuario from  "./infob_hdm_usuario.js.js";
+import _infob_mw_atores from  "./infob_mw_atores.js.js";
+import _infob_mw_comentarios from  "./infob_mw_comentarios.js.js";
+import _infob_mw_filme_usuario from  "./infob_mw_filme_usuario.js.js";
+import _infob_mw_filmes from  "./infob_mw_filmes.js.js";
+import _infob_mw_lista from  "./infob_mw_lista.js.js";
+import _infob_mw_lista_item from  "./infob_mw_lista_item.js.js";
+import _infob_mw_usuario from  "./infob_mw_usuario.js.js";
+import _infoc_atn_tb_chat from  "./infoc_atn_tb_chat.js.js";
+import _infoc_atn_tb_configuracoes_empresa from  "./infoc_atn_tb_configuracoes_empresa.js.js";
+import _infoc_atn_tb_configuracoes_pessoais from  "./infoc_atn_tb_configuracoes_pessoais.js.js";
+import _infoc_atn_tb_curriculo from  "./infoc_atn_tb_curriculo.js.js";
+import _infoc_atn_tb_empresa from  "./infoc_atn_tb_empresa.js.js";
+import _infoc_atn_tb_pessoal from  "./infoc_atn_tb_pessoal.js.js";
+import _infoc_atn_tb_sala from  "./infoc_atn_tb_sala.js.js";
+import _infoc_atn_tb_vagas from  "./infoc_atn_tb_vagas.js.js";
+import _infoc_jdf_adm from  "./infoc_jdf_adm.js.js";
+import _infoc_jdf_cartao from  "./infoc_jdf_cartao.js.js";
+import _infoc_jdf_chat from  "./infoc_jdf_chat.js.js";
+import _infoc_jdf_cliente from  "./infoc_jdf_cliente.js.js";
+import _infoc_jdf_item_pedido from  "./infoc_jdf_item_pedido.js.js";
+import _infoc_jdf_pedido from  "./infoc_jdf_pedido.js.js";
+import _infoc_jdf_produto from  "./infoc_jdf_produto.js.js";
+import _infoc_ntc_administrador from  "./infoc_ntc_administrador.js.js";
+import _infoc_ntc_apoio_frase from  "./infoc_ntc_apoio_frase.js.js";
+import _infoc_ntc_caracteristica_fisica from  "./infoc_ntc_caracteristica_fisica.js.js";
+import _infoc_ntc_denuncia from  "./infoc_ntc_denuncia.js.js";
+import _infoc_ntc_local from  "./infoc_ntc_local.js.js";
+import _infoc_ntc_usuario from  "./infoc_ntc_usuario.js.js";
+import _infoc_ntc_vestimento from  "./infoc_ntc_vestimento.js.js";
+import _infoc_nws_tb_calendario from  "./infoc_nws_tb_calendario.js.js";
+import _infoc_nws_tb_calendario_item from  "./infoc_nws_tb_calendario_item.js.js";
+import _infoc_nws_tb_cartao from  "./infoc_nws_tb_cartao.js.js";
+import _infoc_nws_tb_categoria from  "./infoc_nws_tb_categoria.js.js";
+import _infoc_nws_tb_evento from  "./infoc_nws_tb_evento.js.js";
+import _infoc_nws_tb_pix from  "./infoc_nws_tb_pix.js.js";
+import _infoc_nws_tb_usuario from  "./infoc_nws_tb_usuario.js.js";
+import _infoc_nws_tb_venda from  "./infoc_nws_tb_venda.js.js";
+import _infoc_nws_tb_venda_item from  "./infoc_nws_tb_venda_item.js.js";
+import _infoc_tcc_cliente from  "./infoc_tcc_cliente.js.js";
+import _infoc_tcc_endereco from  "./infoc_tcc_endereco.js.js";
+import _infoc_tcc_produto from  "./infoc_tcc_produto.js.js";
+import _infoc_tcc_venda from  "./infoc_tcc_venda.js.js";
+import _infoc_tcc_venda_item from  "./infoc_tcc_venda_item.js.js";
+import _infoc_tct_cartao from  "./infoc_tct_cartao.js.js";
+import _infoc_tct_categorias from  "./infoc_tct_categorias.js.js";
+import _infoc_tct_chat from  "./infoc_tct_chat.js.js";
+import _infoc_tct_cliente from  "./infoc_tct_cliente.js.js";
+import _infoc_tct_compra from  "./infoc_tct_compra.js.js";
+import _infoc_tct_compra_item from  "./infoc_tct_compra_item.js.js";
+import _infoc_tct_endereco from  "./infoc_tct_endereco.js.js";
+import _infoc_tct_produto from  "./infoc_tct_produto.js.js";
+import _infoc_tdv_adm from  "./infoc_tdv_adm.js.js";
+import _infoc_tdv_cliente from  "./infoc_tdv_cliente.js.js";
+import _infoc_tdv_cupom from  "./infoc_tdv_cupom.js.js";
+import _infoc_tdv_endereco from  "./infoc_tdv_endereco.js.js";
+import _infoc_tdv_favorito from  "./infoc_tdv_favorito.js.js";
+import _infoc_tdv_forma_pagamento from  "./infoc_tdv_forma_pagamento.js.js";
+import _infoc_tdv_genero from  "./infoc_tdv_genero.js.js";
+import _infoc_tdv_livro from  "./infoc_tdv_livro.js.js";
+import _infoc_tdv_pedido from  "./infoc_tdv_pedido.js.js";
+import _infoc_tdv_pedido_item from  "./infoc_tdv_pedido_item.js.js";
+import _infoc_tht_cadastro from  "./infoc_tht_cadastro.js.js";
+import _infoc_tht_cartao from  "./infoc_tht_cartao.js.js";
+import _infoc_tht_chat from  "./infoc_tht_chat.js.js";
+import _infoc_tht_compra from  "./infoc_tht_compra.js.js";
+import _infoc_tht_login from  "./infoc_tht_login.js.js";
+import _infoc_tht_lugar from  "./infoc_tht_lugar.js.js";
+import _infoc_tht_pacote from  "./infoc_tht_pacote.js.js";
+import _infoc_tht_usuario from  "./infoc_tht_usuario.js.js";
+import _infod_ecm_tb_categorias from  "./infod_ecm_tb_categorias.js.js";
+import _infod_ecm_td_roupas_femi from  "./infod_ecm_td_roupas_femi.js.js";
+import _infod_ecm_td_roupas_masc from  "./infod_ecm_td_roupas_masc.js.js";
+import _infod_leo_agendamento from  "./infod_leo_agendamento.js.js";
+import _infod_leo_cliente from  "./infod_leo_cliente.js.js";
+import _infod_leo_funcionario from  "./infod_leo_funcionario.js.js";
+import _infod_leo_servico from  "./infod_leo_servico.js.js";
+import _infod_leo_servico_imagem from  "./infod_leo_servico_imagem.js.js";
+import _infod_omn_area_vaga from  "./infod_omn_area_vaga.js.js";
+import _infod_omn_candidato from  "./infod_omn_candidato.js.js";
+import _infod_omn_candidato_vaga from  "./infod_omn_candidato_vaga.js.js";
+import _infod_omn_curriculo from  "./infod_omn_curriculo.js.js";
+import _infod_omn_empresa from  "./infod_omn_empresa.js.js";
+import _infod_omn_vaga from  "./infod_omn_vaga.js.js";
+import _infod_ssc_adm from  "./infod_ssc_adm.js.js";
+import _infod_ssc_cliente from  "./infod_ssc_cliente.js.js";
+import _infod_ssc_endereco from  "./infod_ssc_endereco.js.js";
+import _infod_ssc_favoritos from  "./infod_ssc_favoritos.js.js";
+import _infod_ssc_item from  "./infod_ssc_item.js.js";
+import _infod_ssc_pedido from  "./infod_ssc_pedido.js.js";
+import _infod_ssc_produto from  "./infod_ssc_produto.js.js";
+import _infod_ssc_venda from  "./infod_ssc_venda.js.js";
+import _infod_tif_animes from  "./infod_tif_animes.js.js";
+import _infod_tif_chat from  "./infod_tif_chat.js.js";
+import _infod_tif_comentario from  "./infod_tif_comentario.js.js";
+import _infod_tif_comunidade from  "./infod_tif_comunidade.js.js";
+import _infod_tif_favoritos from  "./infod_tif_favoritos.js.js";
+import _infod_tif_usuario from  "./infod_tif_usuario.js.js";
+import _infod_tif_usuario_comunidade from  "./infod_tif_usuario_comunidade.js.js";
+import _insf_tb_produto from  "./insf_tb_produto.js.js";
+import _insf_tb_usuario from  "./insf_tb_usuario.js.js";
+import _insf_tb_usuario_endereco from  "./insf_tb_usuario_endereco.js.js";
+import _insf_tb_usuario_endereco_uf from  "./insf_tb_usuario_endereco_uf.js.js";
+import _tb_endereco from  "./tb_endereco.js.js";
+import _tb_produto from  "./tb_produto.js.js";
 
 export default function initModels(sequelize) {
-  var infoa_dtn_tb_adm = _infoa_dtn_tb_adm.init(sequelize, DataTypes);
+  var infoa_dtb_tb_cliente = _infoa_dtb_tb_cliente.init(sequelize, DataTypes);
+  var infoa_dtb_tb_genero = _infoa_dtb_tb_genero.init(sequelize, DataTypes);
+  var infoa_dtb_tb_livro = _infoa_dtb_tb_livro.init(sequelize, DataTypes);
+  var infoa_dtb_tb_venda = _infoa_dtb_tb_venda.init(sequelize, DataTypes);
+  var infoa_dtb_tb_venda_item = _infoa_dtb_tb_venda_item.init(sequelize, DataTypes);
   var infoa_dtn_tb_avaliacao = _infoa_dtn_tb_avaliacao.init(sequelize, DataTypes);
   var infoa_dtn_tb_cliente = _infoa_dtn_tb_cliente.init(sequelize, DataTypes);
   var infoa_dtn_tb_endereco = _infoa_dtn_tb_endereco.init(sequelize, DataTypes);
   var infoa_dtn_tb_favoritos = _infoa_dtn_tb_favoritos.init(sequelize, DataTypes);
   var infoa_dtn_tb_produto = _infoa_dtn_tb_produto.init(sequelize, DataTypes);
   var infoa_dtn_tb_tamanhos = _infoa_dtn_tb_tamanhos.init(sequelize, DataTypes);
+  var infoa_dtn_tb_usuarios_adm = _infoa_dtn_tb_usuarios_adm.init(sequelize, DataTypes);
   var infoa_dtn_tb_venda = _infoa_dtn_tb_venda.init(sequelize, DataTypes);
+  var infoa_dtn_tb_venda_item = _infoa_dtn_tb_venda_item.init(sequelize, DataTypes);
   var infoa_enl_cartao_credito = _infoa_enl_cartao_credito.init(sequelize, DataTypes);
   var infoa_enl_categoria = _infoa_enl_categoria.init(sequelize, DataTypes);
   var infoa_enl_chat = _infoa_enl_chat.init(sequelize, DataTypes);
@@ -278,6 +293,9 @@ export default function initModels(sequelize) {
   var infoc_tht_lugar = _infoc_tht_lugar.init(sequelize, DataTypes);
   var infoc_tht_pacote = _infoc_tht_pacote.init(sequelize, DataTypes);
   var infoc_tht_usuario = _infoc_tht_usuario.init(sequelize, DataTypes);
+  var infod_ecm_tb_categorias = _infod_ecm_tb_categorias.init(sequelize, DataTypes);
+  var infod_ecm_td_roupas_femi = _infod_ecm_td_roupas_femi.init(sequelize, DataTypes);
+  var infod_ecm_td_roupas_masc = _infod_ecm_td_roupas_masc.init(sequelize, DataTypes);
   var infod_leo_agendamento = _infod_leo_agendamento.init(sequelize, DataTypes);
   var infod_leo_cliente = _infod_leo_cliente.init(sequelize, DataTypes);
   var infod_leo_funcionario = _infod_leo_funcionario.init(sequelize, DataTypes);
@@ -311,8 +329,20 @@ export default function initModels(sequelize) {
   var tb_endereco = _tb_endereco.init(sequelize, DataTypes);
   var tb_produto = _tb_produto.init(sequelize, DataTypes);
 
+  infoa_dtb_tb_venda.belongsTo(infoa_dtb_tb_cliente, { as: "ID_CLIENTE_infoa_dtb_tb_cliente", foreignKey: "ID_CLIENTE"});
+  infoa_dtb_tb_cliente.hasMany(infoa_dtb_tb_venda, { as: "infoa_dtb_tb_vendas", foreignKey: "ID_CLIENTE"});
+  infoa_dtb_tb_venda_item.belongsTo(infoa_dtb_tb_cliente, { as: "ID_CLIENTE_infoa_dtb_tb_cliente", foreignKey: "ID_CLIENTE"});
+  infoa_dtb_tb_cliente.hasMany(infoa_dtb_tb_venda_item, { as: "infoa_dtb_tb_venda_items", foreignKey: "ID_CLIENTE"});
+  infoa_dtb_tb_livro.belongsTo(infoa_dtb_tb_genero, { as: "ID_GENERO_infoa_dtb_tb_genero", foreignKey: "ID_GENERO"});
+  infoa_dtb_tb_genero.hasMany(infoa_dtb_tb_livro, { as: "infoa_dtb_tb_livros", foreignKey: "ID_GENERO"});
+  infoa_dtb_tb_venda_item.belongsTo(infoa_dtb_tb_livro, { as: "ID_LIVRO_infoa_dtb_tb_livro", foreignKey: "ID_LIVRO"});
+  infoa_dtb_tb_livro.hasMany(infoa_dtb_tb_venda_item, { as: "infoa_dtb_tb_venda_items", foreignKey: "ID_LIVRO"});
+  infoa_dtb_tb_venda.belongsTo(infoa_dtb_tb_venda_item, { as: "ID_VENDA_ITEM_infoa_dtb_tb_venda_item", foreignKey: "ID_VENDA_ITEM"});
+  infoa_dtb_tb_venda_item.hasMany(infoa_dtb_tb_venda, { as: "infoa_dtb_tb_vendas", foreignKey: "ID_VENDA_ITEM"});
   infoa_dtn_tb_avaliacao.belongsTo(infoa_dtn_tb_cliente, { as: "id_cliente_infoa_dtn_tb_cliente", foreignKey: "id_cliente"});
   infoa_dtn_tb_cliente.hasMany(infoa_dtn_tb_avaliacao, { as: "infoa_dtn_tb_avaliacaos", foreignKey: "id_cliente"});
+  infoa_dtn_tb_endereco.belongsTo(infoa_dtn_tb_cliente, { as: "id_cliente_infoa_dtn_tb_cliente", foreignKey: "id_cliente"});
+  infoa_dtn_tb_cliente.hasMany(infoa_dtn_tb_endereco, { as: "infoa_dtn_tb_enderecos", foreignKey: "id_cliente"});
   infoa_dtn_tb_favoritos.belongsTo(infoa_dtn_tb_cliente, { as: "id_cliente_infoa_dtn_tb_cliente", foreignKey: "id_cliente"});
   infoa_dtn_tb_cliente.hasMany(infoa_dtn_tb_favoritos, { as: "infoa_dtn_tb_favoritos", foreignKey: "id_cliente"});
   infoa_dtn_tb_venda.belongsTo(infoa_dtn_tb_cliente, { as: "id_cliente_infoa_dtn_tb_cliente", foreignKey: "id_cliente"});
@@ -321,8 +351,12 @@ export default function initModels(sequelize) {
   infoa_dtn_tb_produto.hasMany(infoa_dtn_tb_avaliacao, { as: "infoa_dtn_tb_avaliacaos", foreignKey: "id_produto"});
   infoa_dtn_tb_favoritos.belongsTo(infoa_dtn_tb_produto, { as: "id_produto_infoa_dtn_tb_produto", foreignKey: "id_produto"});
   infoa_dtn_tb_produto.hasMany(infoa_dtn_tb_favoritos, { as: "infoa_dtn_tb_favoritos", foreignKey: "id_produto"});
+  infoa_dtn_tb_venda_item.belongsTo(infoa_dtn_tb_produto, { as: "id_produto_infoa_dtn_tb_produto", foreignKey: "id_produto"});
+  infoa_dtn_tb_produto.hasMany(infoa_dtn_tb_venda_item, { as: "infoa_dtn_tb_venda_items", foreignKey: "id_produto"});
   infoa_dtn_tb_produto.belongsTo(infoa_dtn_tb_tamanhos, { as: "id_tamanho_infoa_dtn_tb_tamanho", foreignKey: "id_tamanho"});
   infoa_dtn_tb_tamanhos.hasMany(infoa_dtn_tb_produto, { as: "infoa_dtn_tb_produtos", foreignKey: "id_tamanho"});
+  infoa_enl_produto.belongsTo(infoa_enl_categoria, { as: "id_categoria_infoa_enl_categorium", foreignKey: "id_categoria"});
+  infoa_enl_categoria.hasMany(infoa_enl_produto, { as: "infoa_enl_produtos", foreignKey: "id_categoria"});
   infoa_enl_chat.belongsTo(infoa_enl_chat_usuario, { as: "id_chat_usuario_infoa_enl_chat_usuario", foreignKey: "id_chat_usuario"});
   infoa_enl_chat_usuario.hasMany(infoa_enl_chat, { as: "infoa_enl_chats", foreignKey: "id_chat_usuario"});
   infoa_enl_pedido_compra_e_venda.belongsTo(infoa_enl_pedido, { as: "id_pedido_infoa_enl_pedido", foreignKey: "id_pedido"});
@@ -347,6 +381,8 @@ export default function initModels(sequelize) {
   infoa_enl_usuario.hasMany(infoa_enl_pedido, { as: "infoa_enl_pedidos", foreignKey: "id_usuario_comprador"});
   infoa_enl_pedido.belongsTo(infoa_enl_usuario, { as: "id_usuario_vendedor_infoa_enl_usuario", foreignKey: "id_usuario_vendedor"});
   infoa_enl_usuario.hasMany(infoa_enl_pedido, { as: "id_usuario_vendedor_infoa_enl_pedidos", foreignKey: "id_usuario_vendedor"});
+  infoa_enl_produto.belongsTo(infoa_enl_usuario, { as: "id_usuario_infoa_enl_usuario", foreignKey: "id_usuario"});
+  infoa_enl_usuario.hasMany(infoa_enl_produto, { as: "infoa_enl_produtos", foreignKey: "id_usuario"});
   infoa_enl_reg_plano.belongsTo(infoa_enl_usuario, { as: "id_usuario_infoa_enl_usuario", foreignKey: "id_usuario"});
   infoa_enl_usuario.hasMany(infoa_enl_reg_plano, { as: "infoa_enl_reg_planos", foreignKey: "id_usuario"});
   infoa_enl_visto_recentemente.belongsTo(infoa_enl_usuario, { as: "id_usuario_infoa_enl_usuario", foreignKey: "id_usuario"});
@@ -359,6 +395,8 @@ export default function initModels(sequelize) {
   infoa_gab_usuario.hasMany(infoa_gab_cartao, { as: "infoa_gab_cartaos", foreignKey: "id_usuario"});
   infoa_gab_endereco.belongsTo(infoa_gab_usuario, { as: "id_usuario_infoa_gab_usuario", foreignKey: "id_usuario"});
   infoa_gab_usuario.hasMany(infoa_gab_endereco, { as: "infoa_gab_enderecos", foreignKey: "id_usuario"});
+  infoa_gab_venda.belongsTo(infoa_gab_usuario, { as: "id_usuario_infoa_gab_usuario", foreignKey: "id_usuario"});
+  infoa_gab_usuario.hasMany(infoa_gab_venda, { as: "infoa_gab_vendas", foreignKey: "id_usuario"});
   infoa_gab_entrega.belongsTo(infoa_gab_venda, { as: "id_venda_infoa_gab_venda", foreignKey: "id_venda"});
   infoa_gab_venda.hasMany(infoa_gab_entrega, { as: "infoa_gab_entregas", foreignKey: "id_venda"});
   infoa_gab_venda_item.belongsTo(infoa_gab_venda, { as: "id_venda_infoa_gab_venda", foreignKey: "id_venda"});
@@ -371,6 +409,8 @@ export default function initModels(sequelize) {
   infoa_sti_endereco.hasMany(infoa_sti_venda, { as: "infoa_sti_vendas", foreignKey: "id_endereco"});
   infoa_sti_venda.belongsTo(infoa_sti_produto, { as: "id_produto_infoa_sti_produto", foreignKey: "id_produto"});
   infoa_sti_produto.hasMany(infoa_sti_venda, { as: "infoa_sti_vendas", foreignKey: "id_produto"});
+  infoa_sti_venda_item.belongsTo(infoa_sti_produto, { as: "id_produto_infoa_sti_produto", foreignKey: "id_produto"});
+  infoa_sti_produto.hasMany(infoa_sti_venda_item, { as: "infoa_sti_venda_items", foreignKey: "id_produto"});
   infoa_sti_venda_item.belongsTo(infoa_sti_venda, { as: "id_venda_infoa_sti_venda", foreignKey: "id_venda"});
   infoa_sti_venda.hasMany(infoa_sti_venda_item, { as: "infoa_sti_venda_items", foreignKey: "id_venda"});
   infob_amz_tbreporte_denuncia.belongsTo(infob_amz_tbdenuncia, { as: "id_denuncia_infob_amz_tbdenuncium", foreignKey: "id_denuncia"});
@@ -385,6 +425,10 @@ export default function initModels(sequelize) {
   infoc_jdf_cliente.hasMany(infoc_jdf_pedido, { as: "infoc_jdf_pedidos", foreignKey: "id_cliente"});
   infoc_jdf_chat.belongsTo(infoc_jdf_pedido, { as: "id_pedido_infoc_jdf_pedido", foreignKey: "id_pedido"});
   infoc_jdf_pedido.hasMany(infoc_jdf_chat, { as: "infoc_jdf_chats", foreignKey: "id_pedido"});
+  infoc_jdf_item_pedido.belongsTo(infoc_jdf_pedido, { as: "id_pedido_infoc_jdf_pedido", foreignKey: "id_pedido"});
+  infoc_jdf_pedido.hasMany(infoc_jdf_item_pedido, { as: "infoc_jdf_item_pedidos", foreignKey: "id_pedido"});
+  infoc_jdf_item_pedido.belongsTo(infoc_jdf_produto, { as: "id_produto_infoc_jdf_produto", foreignKey: "id_produto"});
+  infoc_jdf_produto.hasMany(infoc_jdf_item_pedido, { as: "infoc_jdf_item_pedidos", foreignKey: "id_produto"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_caracteristica_fisica, { as: "id_fisico_infoc_ntc_caracteristica_fisica", foreignKey: "id_fisico"});
   infoc_ntc_caracteristica_fisica.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_fisico"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_local, { as: "id_local_infoc_ntc_local", foreignKey: "id_local"});
@@ -393,6 +437,8 @@ export default function initModels(sequelize) {
   infoc_ntc_usuario.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_usuario"});
   infoc_ntc_denuncia.belongsTo(infoc_ntc_vestimento, { as: "id_vestimento_infoc_ntc_vestimento", foreignKey: "id_vestimento"});
   infoc_ntc_vestimento.hasMany(infoc_ntc_denuncia, { as: "infoc_ntc_denuncia", foreignKey: "id_vestimento"});
+  infoc_nws_tb_calendario_item.belongsTo(infoc_nws_tb_calendario, { as: "id_calendario_infoc_nws_tb_calendario", foreignKey: "id_calendario"});
+  infoc_nws_tb_calendario.hasMany(infoc_nws_tb_calendario_item, { as: "infoc_nws_tb_calendario_items", foreignKey: "id_calendario"});
   infoc_nws_tb_venda_item.belongsTo(infoc_nws_tb_calendario_item, { as: "id_calendario_item_infoc_nws_tb_calendario_item", foreignKey: "id_calendario_item"});
   infoc_nws_tb_calendario_item.hasMany(infoc_nws_tb_venda_item, { as: "infoc_nws_tb_venda_items", foreignKey: "id_calendario_item"});
   infoc_nws_tb_venda.belongsTo(infoc_nws_tb_cartao, { as: "id_cartao_infoc_nws_tb_cartao", foreignKey: "id_cartao"});
@@ -407,8 +453,12 @@ export default function initModels(sequelize) {
   infoc_nws_tb_venda.hasMany(infoc_nws_tb_pix, { as: "infoc_nws_tb_pixes", foreignKey: "id_venda"});
   infoc_nws_tb_venda_item.belongsTo(infoc_nws_tb_venda, { as: "id_venda_infoc_nws_tb_venda", foreignKey: "id_venda"});
   infoc_nws_tb_venda.hasMany(infoc_nws_tb_venda_item, { as: "infoc_nws_tb_venda_items", foreignKey: "id_venda"});
+  infoc_tcc_venda.belongsTo(infoc_tcc_cliente, { as: "id_cliente_infoc_tcc_cliente", foreignKey: "id_cliente"});
+  infoc_tcc_cliente.hasMany(infoc_tcc_venda, { as: "infoc_tcc_vendas", foreignKey: "id_cliente"});
   infoc_tcc_cliente.belongsTo(infoc_tcc_endereco, { as: "id_endereco_infoc_tcc_endereco", foreignKey: "id_endereco"});
   infoc_tcc_endereco.hasMany(infoc_tcc_cliente, { as: "infoc_tcc_clientes", foreignKey: "id_endereco"});
+  infoc_tcc_venda.belongsTo(infoc_tcc_produto, { as: "id_produto_infoc_tcc_produto", foreignKey: "id_produto"});
+  infoc_tcc_produto.hasMany(infoc_tcc_venda, { as: "infoc_tcc_vendas", foreignKey: "id_produto"});
   infoc_tcc_venda_item.belongsTo(infoc_tcc_produto, { as: "id_produto_infoc_tcc_produto", foreignKey: "id_produto"});
   infoc_tcc_produto.hasMany(infoc_tcc_venda_item, { as: "infoc_tcc_venda_items", foreignKey: "id_produto"});
   infoc_tcc_venda_item.belongsTo(infoc_tcc_venda, { as: "id_venda_infoc_tcc_venda", foreignKey: "id_venda"});
@@ -429,6 +479,8 @@ export default function initModels(sequelize) {
   infoc_tct_endereco.hasMany(infoc_tct_compra, { as: "infoc_tct_compras", foreignKey: "id_endereco"});
   infoc_tct_compra_item.belongsTo(infoc_tct_produto, { as: "id_produto_infoc_tct_produto", foreignKey: "id_produto"});
   infoc_tct_produto.hasMany(infoc_tct_compra_item, { as: "infoc_tct_compra_items", foreignKey: "id_produto"});
+  infoc_tdv_endereco.belongsTo(infoc_tdv_cliente, { as: "id_cliente_infoc_tdv_cliente", foreignKey: "id_cliente"});
+  infoc_tdv_cliente.hasMany(infoc_tdv_endereco, { as: "infoc_tdv_enderecos", foreignKey: "id_cliente"});
   infoc_tdv_favorito.belongsTo(infoc_tdv_cliente, { as: "id_cliente_infoc_tdv_cliente", foreignKey: "id_cliente"});
   infoc_tdv_cliente.hasMany(infoc_tdv_favorito, { as: "infoc_tdv_favoritos", foreignKey: "id_cliente"});
   infoc_tdv_forma_pagamento.belongsTo(infoc_tdv_cliente, { as: "id_cliente_infoc_tdv_cliente", foreignKey: "id_cliente"});
@@ -483,14 +535,20 @@ export default function initModels(sequelize) {
   insf_tb_usuario_endereco.hasMany(insf_tb_usuario_endereco_uf, { as: "insf_tb_usuario_endereco_ufs", foreignKey: "id_usuario_endereco"});
 
   return {
-    infoa_dtn_tb_adm,
+    infoa_dtb_tb_cliente,
+    infoa_dtb_tb_genero,
+    infoa_dtb_tb_livro,
+    infoa_dtb_tb_venda,
+    infoa_dtb_tb_venda_item,
     infoa_dtn_tb_avaliacao,
     infoa_dtn_tb_cliente,
     infoa_dtn_tb_endereco,
     infoa_dtn_tb_favoritos,
     infoa_dtn_tb_produto,
     infoa_dtn_tb_tamanhos,
+    infoa_dtn_tb_usuarios_adm,
     infoa_dtn_tb_venda,
+    infoa_dtn_tb_venda_item,
     infoa_enl_cartao_credito,
     infoa_enl_categoria,
     infoa_enl_chat,
@@ -605,6 +663,9 @@ export default function initModels(sequelize) {
     infoc_tht_lugar,
     infoc_tht_pacote,
     infoc_tht_usuario,
+    infod_ecm_tb_categorias,
+    infod_ecm_td_roupas_femi,
+    infod_ecm_td_roupas_masc,
     infod_leo_agendamento,
     infod_leo_cliente,
     infod_leo_funcionario,

@@ -5,18 +5,26 @@ export default class infoa_enl_produto extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_produto: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     id_categoria: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'infoa_enl_categoria',
+        key: 'id_categoria'
+      }
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'infoa_enl_usuario',
+        key: 'id_usuario'
+      }
     },
     ds_imagem1: {
       type: DataTypes.STRING(5000),
