@@ -45,24 +45,7 @@ export default class infoa_dtn_tb_endereco extends Model {
   }, {
     sequelize,
     tableName: 'infoa_dtn_tb_endereco',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_endereco" },
-        ]
-      },
-      {
-        name: "id_cliente",
-        using: "BTREE",
-        fields: [
-          { name: "id_cliente" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoa_dtn_tb_endereco;
   }

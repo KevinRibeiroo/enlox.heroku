@@ -5,34 +5,22 @@ export default class infod_leo_agendamento extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_agendamento: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_funcionario: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infod_leo_funcionario',
-        key: 'id_funcionario'
-      }
+      allowNull: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infod_leo_cliente',
-        key: 'id_cliente'
-      }
+      allowNull: true
     },
     id_servico: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infod_leo_servico',
-        key: 'id_servico'
-      }
+      allowNull: true
     },
     dt_agendamento: {
       type: DataTypes.DATE,

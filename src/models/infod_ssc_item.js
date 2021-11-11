@@ -29,24 +29,7 @@ export default class infod_ssc_item extends Model {
   }, {
     sequelize,
     tableName: 'infod_ssc_item',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_item" },
-        ]
-      },
-      {
-        name: "id_produto",
-        using: "BTREE",
-        fields: [
-          { name: "id_produto" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infod_ssc_item;
   }

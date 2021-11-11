@@ -49,17 +49,7 @@ export default class infoc_nws_tb_usuario extends Model {
   }, {
     sequelize,
     tableName: 'infoc_nws_tb_usuario',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_nws_tb_usuario;
   }

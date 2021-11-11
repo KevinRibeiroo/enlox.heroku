@@ -5,10 +5,10 @@ export default class infob_mw_comentarios extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_cometario: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_filme: {
       type: DataTypes.INTEGER,

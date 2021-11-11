@@ -5,10 +5,10 @@ export default class infob_hdm_login_adm extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_HDM_login_adm: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     nm_HDM_nome_adm: {
       type: DataTypes.STRING(500),
@@ -25,17 +25,7 @@ export default class infob_hdm_login_adm extends Model {
   }, {
     sequelize,
     tableName: 'infob_hdm_login_adm',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_HDM_login_adm" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infob_hdm_login_adm;
   }

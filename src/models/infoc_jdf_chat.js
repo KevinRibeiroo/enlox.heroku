@@ -5,18 +5,14 @@ export default class infoc_jdf_chat extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_chat: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_pedido: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_jdf_pedido',
-        key: 'id_pedido'
-      }
+      allowNull: true
     },
     ds_mensagem: {
       type: DataTypes.STRING(255),

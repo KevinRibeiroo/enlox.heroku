@@ -5,18 +5,14 @@ export default class infoc_tcc_cliente extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_cliente: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_endereco: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_tcc_endereco',
-        key: 'id_endereco'
-      }
+      allowNull: true
     },
     nm_cliente: {
       type: DataTypes.STRING(255),

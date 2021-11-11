@@ -57,24 +57,7 @@ export default class infod_omn_candidato extends Model {
   }, {
     sequelize,
     tableName: 'infod_omn_candidato',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_candidato" },
-        ]
-      },
-      {
-        name: "id_curriculo",
-        using: "BTREE",
-        fields: [
-          { name: "id_curriculo" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infod_omn_candidato;
   }

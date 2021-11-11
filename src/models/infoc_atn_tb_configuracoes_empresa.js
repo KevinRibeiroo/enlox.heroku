@@ -5,10 +5,10 @@ export default class infoc_atn_tb_configuracoes_empresa extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_empresaconfig: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_empresa: {
       type: DataTypes.INTEGER,

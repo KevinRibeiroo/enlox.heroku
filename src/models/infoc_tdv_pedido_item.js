@@ -33,31 +33,7 @@ export default class infoc_tdv_pedido_item extends Model {
   }, {
     sequelize,
     tableName: 'infoc_tdv_pedido_item',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_pedido_item" },
-        ]
-      },
-      {
-        name: "id_pedido",
-        using: "BTREE",
-        fields: [
-          { name: "id_pedido" },
-        ]
-      },
-      {
-        name: "id_livro",
-        using: "BTREE",
-        fields: [
-          { name: "id_livro" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_tdv_pedido_item;
   }

@@ -25,24 +25,7 @@ export default class infoc_nws_tb_pix extends Model {
   }, {
     sequelize,
     tableName: 'infoc_nws_tb_pix',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_pix" },
-        ]
-      },
-      {
-        name: "id_venda",
-        using: "BTREE",
-        fields: [
-          { name: "id_venda" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_nws_tb_pix;
   }

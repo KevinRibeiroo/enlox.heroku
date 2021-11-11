@@ -5,10 +5,10 @@ export default class infob_mw_lista extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_lista: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,

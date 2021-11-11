@@ -5,18 +5,14 @@ export default class infoc_tdv_endereco extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_endereco: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoc_tdv_cliente',
-        key: 'id_cliente'
-      }
+      allowNull: true
     },
     nm_rua: {
       type: DataTypes.STRING(255),

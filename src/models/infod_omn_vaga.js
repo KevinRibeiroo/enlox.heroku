@@ -5,10 +5,10 @@ export default class infod_omn_vaga extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_vaga: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     nm_vaga: {
       type: DataTypes.STRING(255),

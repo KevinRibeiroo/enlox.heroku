@@ -5,26 +5,18 @@ export default class infoa_dtb_tb_venda_item extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     ID_VENDA_ITEM: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     ID_CLIENTE: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_dtb_tb_cliente',
-        key: 'ID_CLIENTE'
-      }
+      allowNull: true
     },
     ID_LIVRO: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infoa_dtb_tb_livro',
-        key: 'ID_LIVRO'
-      }
+      allowNull: true
     }
   }, {
     sequelize,

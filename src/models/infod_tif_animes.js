@@ -5,10 +5,10 @@ export default class infod_tif_animes extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_anime: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     nm_anime: {
       type: DataTypes.STRING(255),

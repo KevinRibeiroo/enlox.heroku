@@ -29,31 +29,7 @@ export default class infoc_atn_tb_sala extends Model {
   }, {
     sequelize,
     tableName: 'infoc_atn_tb_sala',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_sala" },
-        ]
-      },
-      {
-        name: "id_empresa",
-        using: "BTREE",
-        fields: [
-          { name: "id_empresa" },
-        ]
-      },
-      {
-        name: "id_pessoal",
-        using: "BTREE",
-        fields: [
-          { name: "id_pessoal" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_atn_tb_sala;
   }

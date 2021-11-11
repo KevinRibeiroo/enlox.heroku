@@ -108,7 +108,8 @@ app.post('/vistorecentemente', async (req, resp) => {
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
             bt_ativo: true,
-            dt_ult_login:Date.now()
+            dt_ult_login:Date.now(),
+            nm_rua:usu.rua
         });
 
         resp.send(r);

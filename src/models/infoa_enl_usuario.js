@@ -31,11 +31,11 @@ export default class infoa_enl_usuario extends Model {
       allowNull: true
     },
     nr_celular: {
-      type: DataTypes.STRING(15),
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     nr_telefone: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     dt_nascimento: {
@@ -43,8 +43,8 @@ export default class infoa_enl_usuario extends Model {
       allowNull: false
     },
     ds_cep: {
-      type: DataTypes.STRING(11),
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     nr_casa: {
       type: DataTypes.INTEGER,
@@ -89,17 +89,7 @@ export default class infoa_enl_usuario extends Model {
   }, {
     sequelize,
     tableName: 'infoa_enl_usuario',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoa_enl_usuario;
   }

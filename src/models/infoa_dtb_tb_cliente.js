@@ -41,17 +41,7 @@ export default class infoa_dtb_tb_cliente extends Model {
   }, {
     sequelize,
     tableName: 'infoa_dtb_tb_cliente',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "ID_CLIENTE" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoa_dtb_tb_cliente;
   }

@@ -53,24 +53,7 @@ export default class infoc_tct_produto extends Model {
   }, {
     sequelize,
     tableName: 'infoc_tct_produto',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_produto" },
-        ]
-      },
-      {
-        name: "id_categoria",
-        using: "BTREE",
-        fields: [
-          { name: "id_categoria" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_tct_produto;
   }

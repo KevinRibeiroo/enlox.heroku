@@ -81,24 +81,7 @@ export default class infoc_nws_tb_evento extends Model {
   }, {
     sequelize,
     tableName: 'infoc_nws_tb_evento',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_evento" },
-        ]
-      },
-      {
-        name: "id_categoria",
-        using: "BTREE",
-        fields: [
-          { name: "id_categoria" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_nws_tb_evento;
   }

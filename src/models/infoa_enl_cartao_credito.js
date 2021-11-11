@@ -5,18 +5,14 @@ export default class infoa_enl_cartao_credito extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_cartao_credito: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'infoa_enl_usuario',
-        key: 'id_usuario'
-      }
+      allowNull: false
     },
     nr_cartao: {
       type: DataTypes.STRING(16),

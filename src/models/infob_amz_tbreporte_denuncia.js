@@ -5,26 +5,18 @@ export default class infob_amz_tbreporte_denuncia extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_reporte_denuncia: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infob_amz_tbusuario',
-        key: 'id_usuario'
-      }
+      allowNull: true
     },
     id_denuncia: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infob_amz_tbdenuncia',
-        key: 'id_denuncia'
-      }
+      allowNull: true
     },
     dt_reporte: {
       type: DataTypes.DATE,
@@ -41,31 +33,7 @@ export default class infob_amz_tbreporte_denuncia extends Model {
   }, {
     sequelize,
     tableName: 'infob_amz_tbreporte_denuncia',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_reporte_denuncia" },
-        ]
-      },
-      {
-        name: "id_usuario",
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
-        ]
-      },
-      {
-        name: "id_denuncia",
-        using: "BTREE",
-        fields: [
-          { name: "id_denuncia" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infob_amz_tbreporte_denuncia;
   }

@@ -29,24 +29,7 @@ export default class infoc_jdf_pedido extends Model {
   }, {
     sequelize,
     tableName: 'infoc_jdf_pedido',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id_pedido" },
-        ]
-      },
-      {
-        name: "id_cliente",
-        using: "BTREE",
-        fields: [
-          { name: "id_cliente" },
-        ]
-      },
-    ]
+    timestamps: false
   });
   return infoc_jdf_pedido;
   }

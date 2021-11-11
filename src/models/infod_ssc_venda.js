@@ -5,26 +5,18 @@ export default class infod_ssc_venda extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     id_venda: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infod_ssc_cliente',
-        key: 'id_cliente'
-      }
+      allowNull: true
     },
     id_endereco_entrega: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'infod_ssc_endereco',
-        key: 'id_endereco'
-      }
+      allowNull: true
     },
     ds_entrega: {
       type: DataTypes.STRING(100),
