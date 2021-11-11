@@ -418,17 +418,37 @@ app.post('/login', async (req, resp) => {
     try {
         let login = req.body;
 
+       
+
+        
+
         let logar = await db.infoa_enl_usuario.findOne({
             where: {
                 ds_email: login.ds_email,
                 ds_senha: login.ds_senha
             }, raw: true});
 
+            if (login.ds_email === "" || login.ds_senha === "") {
+                return resp.send({error: "Não pode inserir campos vazios"})
+            }
+            if (logar.ds_senha === null){
+                return resp.send({error: "Senha incorreta"})
+            }
+            if (logar === null){
+                return resp.send({error: "Senha ou Email incorretos"})
+            }
+            
+           
 
         let lastLogin = await db.infoa_enl_usuario.update({dt_ult_login: Date.now()}, 
         {where: {
             id_usuario: logar.id_usuario
         }})
+
+
+       
+        
+
         resp.send(logar);
 
     } catch (error) {
