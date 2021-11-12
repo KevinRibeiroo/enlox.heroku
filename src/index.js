@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import Sequelize from 'sequelize'
 import multer from 'multer';
+import path from 'path';
+
 
 const {Op, col} = Sequelize;
 
@@ -206,7 +208,7 @@ app.post('/produto/:id/:id2',upload.single('imgPrincipal') , async (req, resp) =
         
         let produto = req.body;
         let id = req.params.id;
-        const {path} = req.file;
+        const { path } = req.file;
 
         let filter = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
