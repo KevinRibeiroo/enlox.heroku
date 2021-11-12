@@ -337,7 +337,7 @@ app.get('/chat_usu/:id', async (req, resp) => {
                     model: db.infoa_enl_usuario,
                     as: "id_usuario_comprador_infoa_enl_usuario" , 
                     required: true
-                } 
+                }
             ]})
 
 
@@ -488,9 +488,9 @@ app.post('/categoria', async (req, resp) => {
 
 
 
-app.get('/categoria', async (req, resp) => {
+app.get('/categoria/:id', async (req, resp) => {
     try {
-        let consul = await db.infoa_enl_categoria.findAll();
+        let consul = await db.infoa_enl_categoria.findOne({where: {id_categoria: req.params.id}});
 
 
         resp.send(consul);
