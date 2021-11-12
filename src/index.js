@@ -355,21 +355,33 @@ app.post('/chat_usu/:id_comprador/:id_vendedor', async (req, resp) => {
         let id_comprador = req.params.id_comprador;
         let id_vendedor = req.params.id_vendedor;
 
+
+
+        if (id_comprador === id_vendedor){
+            return resp.send({error: "Não se pode iniciar um chat consigo msm"})
+        }
+       
+
         const consul = await db.infoa_enl_chat_usuario.findOne({where: { id_usuario_comprador: id_comprador,
             id_usuario_vendedor: id_vendedor}});
 
+       
+        if (consul != null) {
 
-        if (consul != null)
+            
+
+
             return resp.send({erro: 'já existe essse chat'});    
-        
+        }
 
         let r = await db.infoa_enl_chat_usuario.create({
             id_usuario_comprador: id_comprador,
             id_usuario_vendedor: id_vendedor
         });
 
-
+     
         resp.send(r);
+    
     } catch (error) {
         resp.send({error: "erro ao inserir os usuarios no chat"})
     }
@@ -381,7 +393,8 @@ app.delete('/chat_usu/:id', async (req, resp) => {
         let id = req.params.id;
 
 
-        const del = await db.infoa_enl_chat.destroy({where:{[Op.or] : [{id_usuario_comprador: id}, {id_usuario_vendedor: id}]} })
+        const del = await db.infoa_enl_chat_usuario.destroy({where:{id_chat_usuario: id} })
+        resp.sendStatus(200);
     } catch (error) {
         
     }
@@ -427,12 +440,12 @@ app.post('/login', async (req, resp) => {
                 ds_senha: login.ds_senha
             }, raw: true});
 
+            
+            
             if (login.ds_email === "" || login.ds_senha === "") {
                 return resp.send({error: "Não pode inserir campos vazios"})
             }
-            if (logar.ds_senha === null){
-                return resp.send({error: "Senha incorreta"})
-            }
+          
             if (logar === null){
                 return resp.send({error: "Senha ou Email incorretos"})
             }
