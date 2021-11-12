@@ -224,7 +224,7 @@ app.post('/produto/:id/:id2',/*upload.single('imgPrincipal') ,*/ async (req, res
                 bt_ativo: true,
                 nr_media_avaliacao: 1,
                 nr_avaliacao: 1,
-                nr_desconto: 0
+                nr_desconto: 10
                 
         });
 
