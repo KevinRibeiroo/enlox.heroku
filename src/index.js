@@ -188,14 +188,26 @@ app.put('/usuario/:id', async (req, resp) => {
 
 
 // inserir um produto 
+/*
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function(req, file, cb) {
+        const unique = Date.now() + "-" +  Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + "-" + unique + path.extraname(file.originalname))
+    }
+})
 
-
-app.post('/produto/:id/:id2', async (req, resp) => {
+const upload = multer({storage: storage})
+*/
+app.post('/produto/:id/:id2',/*upload.single('imgPrincipal') ,*/ async (req, resp) => {
     try {
         
         let produto = req.body;
         let id = req.params.id;
-       
+        //const {path} = req.file;
+
         let filter = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
 
@@ -211,8 +223,8 @@ app.post('/produto/:id/:id2', async (req, resp) => {
                 ds_produto: produto.ds_produto,
                 bt_ativo: true,
                 nr_media_avaliacao: 1,
-                nr_avaliacao: produto.nr_avaliacao,
-                nr_desconto: produto.desc
+                nr_avaliacao: 1,
+                nr_desconto: 0
                 
         });
 
@@ -224,7 +236,10 @@ app.post('/produto/:id/:id2', async (req, resp) => {
     }
 });
 
-
+app.get('/produtinho', async(req, resp) => {
+    let dirname = path.resolve();
+    resp.sendFile(req.query.imagem, {root: path.join(dirname)})
+})
 
 
 // listar  os produttoos
@@ -560,6 +575,12 @@ app.get('/chat/:id', async (req, resp) => {
         resp.send({error: "erro ao ler mensagens"})
     }
 })
+
+
+
+
+
+
 
 
 app.listen(process.env.PORT,
