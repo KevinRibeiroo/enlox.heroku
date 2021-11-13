@@ -219,33 +219,33 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}); 
 
-app.post('/produto/:id/:id2',  async (req, resp) => {
+app.post('/produto/:idUsu/:idCateg', upload.single('imgPrincipal'),   async (req, resp) => {
     try {
         
-        let produto = req.body;
-        let id = req.params.id;
-        //const { path } = req.file;
+        let {nmproduto, desc , preco} = req.body;
+        let idCategoria = req.params.idCateg;
+        let idUsu = req.params.idUsu;
+        const  { path }  = req.file;
 
-        let filter = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
+        //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
 
-        let r = await db.infoa_enl_produto.create({
-                id_categoria: req.params.id2,//categorias foram criadas; id de 1 a 7
-                id_usuario: id,
-                ds_imagem1: "hj",
-                ds_imagem2: "a",
-                ds_imagem3: "a",
-                ds_imagem4: "a",
-                nm_produto: "12etgsa",
-                vl_preco: 10,
-                ds_produto: "qual é",
-                bt_ativo: true,
-                nr_media_avaliacao: 1,
-                nr_avaliacao: 1,
-                nr_desconto: 10
-                
+        const r = await db.infoa_enl_produto.create({
+            id_categoria: idCategoria,
+            id_usuario: idUsu,
+            nm_produto: nmproduto,
+            vl_preco: preco,
+            ds_produto: desc,
+            bt_ativo: 1,
+            nr_media_avaliacao: 1,
+            nr_avaliacao: 3,
+            nr_desconto: 20,
+            ds_imagem1: path,
+            ds_imagem2: "sd",
+            ds_imagem3: "dsa",
+            ds_imagem4: "dasda"
+
         });
-
         
         resp.send(r);
         
@@ -599,7 +599,42 @@ app.get('/chat/:id', async (req, resp) => {
 
 
 
+// test 
 
+app.post('/produta/:idUsu/:idCateg', async (req, resp) => {
+    try {
+
+        let produt = req.body;
+        let idCategoria = req.params.idCateg;
+        let idUsu = req.params.idUsu;
+
+
+
+        const r = await db.infoa_enl_produto.create({
+            id_categoria: idCategoria,
+            id_usuario: idUsu,
+            nm_produto: produt.nm,
+            vl_preco: 110,
+            ds_produto: produt.ds,
+            bt_ativo: 1,
+            nr_media_avaliacao: 1,
+            nr_avaliacao: 3,
+            nr_desconto: 20,
+            ds_imagem1: "sdad",
+            ds_imagem2: "sd",
+            ds_imagem3: "dsa",
+            ds_imagem4: "dasda"
+
+        });
+
+
+        resp.send(r);
+
+        
+    } catch (error) {
+        resp.send({error: "Falha ao inserir produto"});
+    }
+})
 
 
 app.listen(process.env.PORT,
