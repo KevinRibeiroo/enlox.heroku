@@ -167,14 +167,25 @@ app.get('/usuario', async (req, resp) => {
     }
 })
 
+const storage1 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploadsPerfil/')
+    }, 
+    filename: function (req, file, cb) {
+        const unico = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + unico + path.extname(file.originalname))
+    }
+})
 
+const upload1 = multer({storage1: storage1 })
 
-app.put('/usuario/:id', async (req, resp) => {
+app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
     try {
         let id = req.params.id;
         const usu = req.body;
+        const {path} = req.file;
 
-        const r = await db.infoa_enl_usuario.update({img_foto: usu.img},{where: {id_usuario: id}})
+        const r = await db.infoa_enl_usuario.update({img_foto: path},{where: {id_usuario: id}})
 
 
         resp.send(r);
@@ -183,6 +194,11 @@ app.put('/usuario/:id', async (req, resp) => {
         resp.send({error: "erro ao alterar o usuario"})
     }
 })
+
+app.get('/usuario', async(req, resp) => {
+    let dirname = path.resolve();
+    resp.sendFile(req.query.imagem, {root: path.join(dirname)})
+} )
 
 
 
