@@ -234,7 +234,7 @@ app.post('/produto/:id/:id2',upload.single('imgPrincipal') , async (req, resp) =
         resp.send(r);
         
     } catch (error) {
-        resp.send({error: "Erro ao inserir o produto meu cumpadrade"})
+        resp.send({error: "Erro ao inserir o produto."})
     }
 });
 
