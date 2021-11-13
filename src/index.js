@@ -201,7 +201,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({storage: storage}); 
 
 app.post('/produto/:id/:id2',upload.single('imgPrincipal') , async (req, resp) => {
     try {
