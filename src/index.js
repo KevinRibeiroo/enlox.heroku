@@ -203,12 +203,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}); 
 
-app.post('/produto/:id/:id2',upload.single('imgPrincipal') , async (req, resp) => {
+app.post('/produto/:id/:id2',  async (req, resp) => {
     try {
         
         let produto = req.body;
         let id = req.params.id;
-        const { path } = req.file;
+        //const { path } = req.file;
 
         let filter = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
@@ -216,13 +216,13 @@ app.post('/produto/:id/:id2',upload.single('imgPrincipal') , async (req, resp) =
         let r = await db.infoa_enl_produto.create({
                 id_categoria: req.params.id2,//categorias foram criadas; id de 1 a 7
                 id_usuario: id,
-                ds_imagem1: path,
-                ds_imagem2: path,
-                ds_imagem3: path,
-                ds_imagem4: path,
-                nm_produto: produto.nm_produto,
-                vl_preco: produto.vl_preco,
-                ds_produto: produto.ds_produto,
+                ds_imagem1: "hj",
+                ds_imagem2: "a",
+                ds_imagem3: "a",
+                ds_imagem4: "a",
+                nm_produto: "12etgsa",
+                vl_preco: 10,
+                ds_produto: "qual é",
                 bt_ativo: true,
                 nr_media_avaliacao: 1,
                 nr_avaliacao: 1,
