@@ -177,7 +177,7 @@ const storage1 = multer.diskStorage({
     }
 })
 
-const upload1 = multer({storage1: storage1 })
+const upload1 = multer({storage: storage1 })
 
 app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
     try {
@@ -185,7 +185,14 @@ app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
         const usu = req.body;
         const {path} = req.file;
 
-        const r = await db.infoa_enl_usuario.update({img_foto: path},{where: {id_usuario: id}})
+        const r = await db.infoa_enl_usuario.update(
+            {
+                img_foto: path
+            },
+
+            {
+                where: {id_usuario: id}
+             })
 
 
         resp.send(r);
@@ -195,9 +202,9 @@ app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
     }
 })
 
-app.get('/usuario', async(req, resp) => {
+app.get('/usuariozin', async(req, resp) => {
     let dirname = path.resolve();
-    resp.sendFile(req.query.imagem, {root: path.join(dirname)})
+    resp.sendFile(req.query.img_foto, {root: path.join(dirname)})
 } )
 
 
