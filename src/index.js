@@ -235,15 +235,17 @@ app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (r
 
         //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
-        console.log(nmproduto);
-        console.log(req.files)
+        if (nmproduto === '')
+        return resp.send({error: "não se pode inserir campos null"})
+     
+        console.log(nmproduto)
       
         const r = await db.infoa_enl_produto.create({
             id_categoria: idCategoria,
             id_usuario: idUsu,
-            nm_produto: "kct",
-            vl_preco: 11,
-            ds_produto: "kct",
+            nm_produto: nmproduto,
+            vl_preco: preco,
+            ds_produto: desc,
             bt_ativo: 1,
             nr_media_avaliacao: 1,
             nr_avaliacao: 3,
@@ -255,7 +257,11 @@ app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (r
 
         });
         
+       
+        
+
         resp.send(r);
+        
         
     } catch (error) {
         resp.send({error: "Erro ao inserir o produto."})
@@ -273,8 +279,18 @@ app.get('/produtinho', async(req, resp) => {
 app.get('/produtoss/:id', async (req, resp) => {
     try {
         let id = req.params.id;
+        let page = req.query.page || 0;
+        if (page <= 0) page = 1;
+      
+        const itemsPerPage = 8;
+        const skipItems    = (page-1) * itemsPerPage;
 
-        let list = await db.infoa_enl_produto.findAll({where: {id_usuario: id}});
+        let list = await db.infoa_enl_produto.findAll(
+            
+            {
+                limit: itemsPerPage,
+                offset: skipItems,
+                where: {id_usuario: id}});
 
 
         resp.send(list);
