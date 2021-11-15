@@ -32,7 +32,7 @@ app.get('/vistorecentemente', async (req, resp) => {
                     //attributes: []
                 }
             ],
-            attributes: []
+            //attributes: []
         })
 
         const result = r.map(item => { return {
@@ -55,7 +55,7 @@ app.get('/vistorecentemente', async (req, resp) => {
         resp.send(r);
     } catch (e) {
         console.log(e);
-        resp.send({ error: 'Deu ruimmmm'})
+        resp.send({ error: 'Deu ruim'})
     }
 })
 
@@ -73,9 +73,6 @@ app.post('/vistorecentemente', async (req, resp) => {
     }
 
 })
-
-
-
 
 
     // cadastra usuario
@@ -103,7 +100,6 @@ app.post('/vistorecentemente', async (req, resp) => {
             dt_nascimento: usu.nascimento,
             ds_cep:  usu.ds_cep,
             nr_casa: usu.nr_casa,
-            ds_bairro: usu.bairro,
             ds_cidade: usu.cidade,
             bt_sexo: 1,
             img_foto: usu.img,
@@ -113,7 +109,7 @@ app.post('/vistorecentemente', async (req, resp) => {
             dt_ult_login:Date.now(),
             nm_rua: usu.rua
         });
-
+        
         resp.send(r);
     }
         catch (error) {
@@ -135,8 +131,6 @@ app.get('/usuario/:id', async (req, resp) => {
         resp.send({error: "Deu erro na listagem"})
     }
 });
-
-
 
 
 
