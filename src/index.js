@@ -163,15 +163,15 @@ app.get('/usuario', async (req, resp) => {
     }
 })
 
-const storage1 = multer.diskStorage({
-    destination: function (req, file, cb) {
+const storage1= multer.diskStorage({
+    destination: function(req, file, cb) {
         cb(null, 'uploadsPerfil/')
-    }, 
-    filename: function (req, file, cb) {
-        const unico = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + unico + path.extname(file.originalname))
+    },
+    filename: function(req, file, cb) {
+        const unique = Date.now() + "-" +  Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + "-" + unique + path.extname(file.originalname))
     }
-})
+});
 
 const upload1 = multer({storage: storage1 })
 
@@ -201,8 +201,8 @@ app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
 
 app.get('/usuariozin', async(req, resp) => {
     let dirname = path.resolve();
-    resp.sendFile(req.query.image, {root: path.join(dirname)})
-} )
+    resp.sendFile(req.query.imagem, {root: path.join(dirname)})
+})
 
 
 
