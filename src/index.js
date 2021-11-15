@@ -194,7 +194,8 @@ app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
                 where: {id_usuario: id}
              })
 
-
+        console.log(path)
+        console.log(req.file)
         resp.send(r);
 
     } catch (error) {
@@ -204,7 +205,7 @@ app.put('/usuario/:id', upload1.single('foto'), async (req, resp) => {
 
 app.get('/usuariozin', async(req, resp) => {
     let dirname = path.resolve();
-    resp.sendFile(req.query.img_foto, {root: path.join(dirname)})
+    resp.sendFile(req.query.image, {root: path.join(dirname)})
 } )
 
 
