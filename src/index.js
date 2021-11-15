@@ -234,15 +234,17 @@ app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (r
 
         //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
-        console.log(nmproduto);
-        console.log(req.files)
+
+        if (nmproduto === null || desc === null || preco === null){
+            return resp.send({error: "não se pode inserir campos nu"})
+        }
       
         const r = await db.infoa_enl_produto.create({
             id_categoria: idCategoria,
             id_usuario: idUsu,
-            nm_produto: "kct",
-            vl_preco: 11,
-            ds_produto: "kct",
+            nm_produto: nmproduto,
+            vl_preco: preco,
+            ds_produto: desc,
             bt_ativo: 1,
             nr_media_avaliacao: 1,
             nr_avaliacao: 3,
