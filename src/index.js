@@ -87,29 +87,31 @@ app.post('/vistorecentemente', async (req, resp) => {
         let usu = req.body;
 
 
-        let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
+        //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
 
         
         let r = await db.infoa_enl_usuario.create({
-            nm_usuario: usu.nm_usuario,
-            nm_nome: usu.nm_nome,
-            ds_cpf: usu.ds_cpf,
-            nr_celular: usu.nr_celular,
-            ds_email: usu.ds_email,
-            ds_senha: usu.ds_senha,
-            dt_nascimento: usu.nascimento,
-            ds_cep:  usu.ds_cep,
-            nr_casa: usu.nr_casa,
-            ds_cidade: usu.cidade,
+            nm_usuario: usu.nm,
+            nm_nome: "daskd",
+            ds_cpf: 2,
+            nr_celular: 1,
+            ds_email: "dhasjkd",
+            ds_senha: "shdjka",
+            dt_nascimento: Date.now(),
+            ds_cep: 899,
+            nr_casa: 1,
+            ds_cidade: "asd",
             bt_sexo: 1,
-            img_foto: usu.img,
+            img_foto: 'usu.img',
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
-            bt_ativo: true,
+            bt_ativo: 1,
+            ds_bairro: "dasd",
             dt_ult_login:Date.now(),
-            nm_rua: usu.rua
+            nm_rua: "ashgkj"
         });
         
+        console.log("aaaaaa")
         resp.send(r);
     }
         catch (error) {
@@ -639,8 +641,37 @@ app.post('/produta/:idUsu/:idCateg', async (req, resp) => {
     } catch (error) {
         resp.send({error: "Falha ao inserir produto"});
     }
-})
+});
 
+app.post('/usuaria', async (req, resp) => {
+    try {
+        
+    
+    let usu = req.body;
+
+    //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
+    let r = await db.infoa_enl_usuario.create({
+        nm_usuario: usu.nm,
+        nm_nome: "das",
+        ds_email: "dh",
+        ds_senha: "sha",
+        dt_nascimento: Date.now(),
+        nr_casa: 12,
+        ds_cidade: "as",
+        bt_sexo: 1,
+        ds_bairro: "dhask",
+        dt_cadastro: Date.now(),
+        bt_ativo: 1,
+        dt_ult_login: Date.now()
+    });
+    
+    console.log("aaaaaa")
+    resp.send(r);
+}
+    catch (error) {
+        resp.send({error: "insere direito?"})   
+    }
+})
 
 app.listen(process.env.PORT,
     x =>  console.log(`Oxe bglh ta lá na ${process.env.PORT}`))
