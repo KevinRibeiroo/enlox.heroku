@@ -203,31 +203,35 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}); 
 
-app.post('/produto/:idUsu/:idCateg', upload.single('imgPrincipal'),   async (req, resp) => {
+app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (req, resp) => {
     try {
         
         let {nmproduto, desc , preco} = req.body;
         let idCategoria = req.params.idCateg;
         let idUsu = req.params.idUsu;
-        const  { path }  = req.file;
+        const path   = req.files[0].path;
+    
+        //const r1 = [req.files.map((x))]
 
         //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
-
+        console.log(nmproduto);
+        console.log(req.files)
+      
         const r = await db.infoa_enl_produto.create({
             id_categoria: idCategoria,
             id_usuario: idUsu,
-            nm_produto: nmproduto,
-            vl_preco: preco,
-            ds_produto: desc,
+            nm_produto: "kct",
+            vl_preco: 11,
+            ds_produto: "kct",
             bt_ativo: 1,
             nr_media_avaliacao: 1,
             nr_avaliacao: 3,
             nr_desconto: 20,
             ds_imagem1: path,
-            ds_imagem2: "sd",
-            ds_imagem3: "dsa",
-            ds_imagem4: "dasda"
+            ds_imagem2: req.files[1].path,
+            ds_imagem3: req.files[2].path,
+            ds_imagem4: req.files[3].path
 
         });
         
