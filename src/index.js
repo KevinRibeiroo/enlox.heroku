@@ -32,7 +32,7 @@ app.get('/vistorecentemente', async (req, resp) => {
                     //attributes: []
                 }
             ],
-            attributes: []
+            //attributes: []
         })
 
         const result = r.map(item => { return {
@@ -55,7 +55,7 @@ app.get('/vistorecentemente', async (req, resp) => {
         resp.send(r);
     } catch (e) {
         console.log(e);
-        resp.send({ error: 'Deu ruimmmm'})
+        resp.send({ error: 'Deu ruim'})
     }
 })
 
@@ -75,9 +75,6 @@ app.post('/vistorecentemente', async (req, resp) => {
 })
 
 
-
-
-
     // cadastra usuario
 
     app.post('/usuario', async (req, resp) => {
@@ -90,30 +87,31 @@ app.post('/vistorecentemente', async (req, resp) => {
         let usu = req.body;
 
 
-        let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
+        //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
 
         
         let r = await db.infoa_enl_usuario.create({
-            nm_usuario: usu.nm_usuario,
-            nm_nome: usu.nm_nome,
-            ds_cpf: usu.ds_cpf,
-            nr_celular: usu.nr_celular,
-            ds_email: usu.ds_email,
-            ds_senha: usu.ds_senha,
-            dt_nascimento: usu.nascimento,
-            ds_cep:  usu.ds_cep,
-            nr_casa: usu.nr_casa,
-            ds_bairro: usu.bairro,
-            ds_cidade: usu.cidade,
+            nm_usuario: usu.nm,
+            nm_nome: "daskd",
+            ds_cpf: 2,
+            nr_celular: 1,
+            ds_email: "dhasjkd",
+            ds_senha: "shdjka",
+            dt_nascimento: Date.now(),
+            ds_cep: 899,
+            nr_casa: 1,
+            ds_cidade: "asd",
             bt_sexo: 1,
-            img_foto: usu.img,
+            img_foto: 'usu.img',
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
-            bt_ativo: true,
+            bt_ativo: 1,
+            ds_bairro: "dasd",
             dt_ult_login:Date.now(),
-            nm_rua: usu.rua
+            nm_rua: "ashgkj"
         });
-
+        
+        console.log("aaaaaa")
         resp.send(r);
     }
         catch (error) {
@@ -135,8 +133,6 @@ app.get('/usuario/:id', async (req, resp) => {
         resp.send({error: "Deu erro na listagem"})
     }
 });
-
-
 
 
 
@@ -227,31 +223,35 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage}); 
 
-app.post('/produto/:idUsu/:idCateg', upload.single('imgPrincipal'),   async (req, resp) => {
+app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (req, resp) => {
     try {
         
         let {nmproduto, desc , preco} = req.body;
         let idCategoria = req.params.idCateg;
         let idUsu = req.params.idUsu;
-        const  { path }  = req.file;
+        const path   = req.files[0].path;
+    
+        //const r1 = [req.files.map((x))]
 
         //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
-
+        console.log(nmproduto);
+        console.log(req.files)
+      
         const r = await db.infoa_enl_produto.create({
             id_categoria: idCategoria,
             id_usuario: idUsu,
-            nm_produto: nmproduto,
-            vl_preco: preco,
-            ds_produto: desc,
+            nm_produto: "kct",
+            vl_preco: 11,
+            ds_produto: "kct",
             bt_ativo: 1,
             nr_media_avaliacao: 1,
             nr_avaliacao: 3,
             nr_desconto: 20,
             ds_imagem1: path,
-            ds_imagem2: "sd",
-            ds_imagem3: "dsa",
-            ds_imagem4: "dasda"
+            ds_imagem2: req.files[1].path,
+            ds_imagem3: req.files[2].path,
+            ds_imagem4: req.files[3].path
 
         });
         
@@ -642,8 +642,37 @@ app.post('/produta/:idUsu/:idCateg', async (req, resp) => {
     } catch (error) {
         resp.send({error: "Falha ao inserir produto"});
     }
-})
+});
 
+app.post('/usuaria', async (req, resp) => {
+    try {
+        
+    
+    let usu = req.body;
+
+    //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
+    let r = await db.infoa_enl_usuario.create({
+        nm_usuario: usu.nm,
+        nm_nome: "das",
+        ds_email: "dh",
+        ds_senha: "sha",
+        dt_nascimento: Date.now(),
+        nr_casa: 12,
+        ds_cidade: "as",
+        bt_sexo: 1,
+        ds_bairro: "dhask",
+        dt_cadastro: Date.now(),
+        bt_ativo: 1,
+        dt_ult_login: Date.now()
+    });
+    
+    console.log("aaaaaa")
+    resp.send(r);
+}
+    catch (error) {
+        resp.send({error: "insere direito?"})   
+    }
+})
 
 app.listen(process.env.PORT,
     x =>  console.log(`Oxe bglh ta lá na ${process.env.PORT}`))
