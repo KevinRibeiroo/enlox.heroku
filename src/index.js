@@ -279,8 +279,18 @@ app.get('/produtinho', async(req, resp) => {
 app.get('/produtoss/:id', async (req, resp) => {
     try {
         let id = req.params.id;
+        let page = req.query.page || 0;
+        if (page <= 0) page = 1;
+      
+        const itemsPerPage = 8;
+        const skipItems    = (page-1) * itemsPerPage;
 
-        let list = await db.infoa_enl_produto.findAll({where: {id_usuario: id}});
+        let list = await db.infoa_enl_produto.findAll(
+            
+            {
+                limit: itemsPerPage,
+                offset: skipItems,
+                where: {id_usuario: id}});
 
 
         resp.send(list);
