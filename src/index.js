@@ -235,7 +235,7 @@ app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (r
 
         //const filoi = await db.infoa_enl_produto.findOne({where: {nm_produto: produto.nm_produto}});
 
-        if (nmproduto === '')
+        if (nmproduto === '' || desc === '' || preco === '')
         return resp.send({error: "não se pode inserir campos null"})
      
         console.log(nmproduto)
@@ -259,6 +259,7 @@ app.post('/produto/:idUsu/:idCateg', upload.array('imgPrincipal', 4),   async (r
         
        
         
+        console.log(req.body)
 
         resp.send(r);
         
@@ -621,6 +622,7 @@ app.post('/produta/:idUsu/:idCateg', async (req, resp) => {
         let produt = req.body;
         let idCategoria = req.params.idCateg;
         let idUsu = req.params.idUsu;
+
 
 
 
