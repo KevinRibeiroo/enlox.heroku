@@ -19,7 +19,7 @@ export default class infod_tif_usuario extends Model {
       allowNull: true
     },
     ds_senha: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(32),
       allowNull: true
     },
     ds_telefone: {
@@ -36,6 +36,18 @@ export default class infod_tif_usuario extends Model {
     },
     ds_perfil: {
       type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    ds_biografia: {
+      type: DataTypes.STRING(3000),
+      allowNull: true
+    },
+    ds_fundo: {
+      type: DataTypes.STRING(2555),
+      allowNull: true
+    },
+    ds_genero: {
+      type: DataTypes.STRING(1000),
       allowNull: true
     }
   }, {

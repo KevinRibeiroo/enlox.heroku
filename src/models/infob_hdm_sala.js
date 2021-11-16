@@ -1,34 +1,22 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infoc_tht_cadastro extends Model {
+export default class infob_hdm_sala extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cadastro: {
+    id_hdm_sala: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    ds_email: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    ds_senha: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    nr_celular: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    nm_nome: {
-      type: DataTypes.STRING(15),
+    nm_sala: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infoc_tht_cadastro',
+    tableName: 'infob_hdm_sala',
     timestamps: false,
     indexes: [
       {
@@ -36,11 +24,11 @@ export default class infoc_tht_cadastro extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_cadastro" },
+          { name: "id_hdm_sala" },
         ]
       },
     ]
   });
-  return infoc_tht_cadastro;
+  return infob_hdm_sala;
   }
 }

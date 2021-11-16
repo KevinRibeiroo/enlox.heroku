@@ -1,42 +1,50 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class infob_mw_comentarios extends Model {
+export default class infod_ecm_tb_intm extends Model {
   static init(sequelize, DataTypes) {
   super.init({
-    id_cometario: {
+    id_roupa: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    id_filme: {
+    id_categoria: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    id_usuario: {
+    ds_roupa: {
+      type: DataTypes.STRING(150),
+      allowNull: true
+    },
+    vl_preco: {
+      type: DataTypes.DECIMAL(15,2),
+      allowNull: true
+    },
+    tp_roupa: {
+      type: DataTypes.STRING(60),
+      allowNull: true
+    },
+    ds_tamanho: {
+      type: DataTypes.CHAR(10),
+      allowNull: true
+    },
+    bt_disponivel: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    qtd_disponivel: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    ds_mensagem: {
-      type: DataTypes.STRING(300),
-      allowNull: true
-    },
-    dt_comentario: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    ds_curtidas: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    qtd_curtidas: {
-      type: DataTypes.TEXT,
+    ds_cor: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'infob_mw_comentarios',
+    tableName: 'infod_ecm_tb_intm',
     timestamps: false,
     indexes: [
       {
@@ -44,25 +52,18 @@ export default class infob_mw_comentarios extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id_cometario" },
+          { name: "id_roupa" },
         ]
       },
       {
-        name: "id_filme",
+        name: "id_categoria",
         using: "BTREE",
         fields: [
-          { name: "id_filme" },
-        ]
-      },
-      {
-        name: "id_usuario",
-        using: "BTREE",
-        fields: [
-          { name: "id_usuario" },
+          { name: "id_categoria" },
         ]
       },
     ]
   });
-  return infob_mw_comentarios;
+  return infod_ecm_tb_intm;
   }
 }
