@@ -207,9 +207,9 @@ app.get('/usuariozin', async(req, resp) => {
 })
 
 
-//put de email e endereço
+//put de email, número, nome e endereço
 
-app.put('/usuarioo/:id', async (req, resp) => {
+app.put('/usuarioEmail/:id', async (req, resp) => {
     try {
         let id = req.params.id;
       
@@ -217,18 +217,80 @@ app.put('/usuarioo/:id', async (req, resp) => {
 
         let r = await db.infoa_enl_usuario.update(
             {
-                ds_email: usuario.ds_email
+                ds_email: usuario.email
             },
         {
             where: {id_usuario: id}
         });
 
-
+        console.log(usuario)
+        console.log(id)
         resp.send(r);
     } catch (error) {
         resp.send({error: "endereço não foi alterado devido a um erro ai"})
     }
 });
+
+app.put('/usuarioNumero/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nr_celular: usuario.num
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "número não foi alterado devido a um erro ai"})
+    }
+});
+
+app.put('/usuarioNick/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nm_usuario: usuario.nick
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "nick não foi alterado devido a um erro ai"})
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // inserir um produto 
 
