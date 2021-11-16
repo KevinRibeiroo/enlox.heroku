@@ -184,6 +184,8 @@ app.get('/usuario', async (req, resp) => {
     }
 })
 
+//upload de foto pro usuario ai
+
 const storage1= multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploadsPerfil/')
@@ -224,6 +226,109 @@ app.get('/usuariozin', async(req, resp) => {
     let dirname = path.resolve();
     resp.sendFile(req.query.imagem, {root: path.join(dirname)})
 })
+
+
+//put de email, número, nome e endereço
+
+app.put('/usuarioEmail/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                ds_email: usuario.email
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "endereço não foi alterado devido a um erro ai"})
+    }
+});
+
+app.put('/usuarioNumero/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nr_celular: usuario.num
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "número não foi alterado devido a um erro ai"})
+    }
+});
+
+app.put('/usuarioNick/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nm_usuario: usuario.nick
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "nick não foi alterado devido a um erro ai"})
+    }
+});
+
+
+app.put('/usuarioEndereco/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nm_rua: usuario.endereco
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "nick não foi alterado devido a um erro ai"})
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 
