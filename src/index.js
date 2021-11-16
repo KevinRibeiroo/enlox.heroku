@@ -59,6 +59,29 @@ app.get('/vistorecentemente', async (req, resp) => {
     }
 })
 
+function Validador(usuario,nome,cpf,celular,email,senha,cep,cidade,rua) {
+    let msg = " ";
+    if(usuario.length === 0)
+        msg+="Credenciais de usuário inválido.";
+    if(nome.length === 0)
+        msg+="Credenciais de nome inválido.";
+    if(cpf.length !== 11)
+        msg+="Credenciais de cpf inválido.";
+    if(celular.length !== 11)
+        msg+="Credenciais de celular inválido. Adicione o ddd";
+    if(!email.includes("@"))
+        msg+="Credenciais de email inválido.";
+    if(senha.length === 0)
+        msg+="Credenciais de usuário inválido.";
+    if(cep.length !== 8)
+        msg+="Credenciais de cep inválido.";
+    if(cidade.length === 0)
+        msg+="Credenciais de cidade inválido.";
+    if(rua.length === 0)
+        msg+="Credenciais de rua inválido.";
+    
+}
+
 app.post('/vistorecentemente', async (req, resp) => {
     const { usuario, produto } = req.body;
     try {
@@ -85,8 +108,6 @@ app.post('/vistorecentemente', async (req, resp) => {
             
         
         let usu = req.body;
-
-          
         //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
 
         let r = await db.infoa_enl_usuario.create({
