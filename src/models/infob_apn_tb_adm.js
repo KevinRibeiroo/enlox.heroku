@@ -5,16 +5,20 @@ export default class infob_apn_tb_adm extends Model {
   static init(sequelize, DataTypes) {
   super.init({
     ID_ADM: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
-    DS_COD: {
+    DS_SENHA: {
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    DS_SENHA: {
+    DS_EMAIL: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    NM_ADM: {
       type: DataTypes.STRING(100),
       allowNull: true
     }
