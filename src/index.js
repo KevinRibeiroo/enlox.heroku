@@ -276,6 +276,28 @@ app.put('/usuarioNick/:id', async (req, resp) => {
 });
 
 
+app.put('/usuarioEndereco/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                nm_rua: usuario.endereco
+            },
+        {
+            where: {id_usuario: id}
+        });
+
+        console.log(usuario)
+        console.log(id)
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "nick não foi alterado devido a um erro ai"})
+    }
+});
+
 
 
 
