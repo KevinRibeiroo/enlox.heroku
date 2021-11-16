@@ -86,36 +86,36 @@ app.post('/vistorecentemente', async (req, resp) => {
         
         let usu = req.body;
 
-
+          
         //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
 
-        
         let r = await db.infoa_enl_usuario.create({
-            nm_usuario: usu.nm,
-            nm_nome: "daskd",
-            ds_cpf: 2,
-            nr_celular: 1,
-            ds_email: "dhasjkd",
-            ds_senha: "shdjka",
+            nm_usuario: usu.nm_usuario,
+            nm_nome: usu.nm_nome,
+            ds_cpf: usu.ds_cpf,
+            nr_celular: usu.nr_celular,
+            ds_email: usu.ds_email,
+            ds_senha: usu.ds_senha,
             dt_nascimento: Date.now(),
-            ds_cep: 899,
-            nr_casa: 1,
-            ds_cidade: "asd",
+            ds_cep: usu.ds_cep,
+            nr_casa: usu.nr_casa,
+            ds_cidade: usu.ds_cidade,
             bt_sexo: 1,
-            img_foto: 'usu.img',
+            img_foto: "qualquer",
             dt_cadastro: Date.now(),
             dt_alteracao: Date.now(),
-            bt_ativo: 1,
-            ds_bairro: "dasd",
+            bt_ativo: true,
+            ds_bairro: "Conceição",
             dt_ult_login:Date.now(),
-            nm_rua: "ashgkj"
+            nm_rua: usu.nm_rua
         });
         
-        console.log("aaaaaa")
+    
         resp.send(r);
     }
         catch (error) {
-            resp.send({error: "insere direito"})   
+            console.log(error)
+            resp.send({error})   
         }
     })
 
