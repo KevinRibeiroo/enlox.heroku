@@ -163,6 +163,8 @@ app.get('/usuario', async (req, resp) => {
     }
 })
 
+//upload de foto pro usuario ai
+
 const storage1= multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploadsPerfil/')
@@ -205,9 +207,28 @@ app.get('/usuariozin', async(req, resp) => {
 })
 
 
+//put de email e endereço
+
+app.put('/usuarioo/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+      
+        let usuario = req.body;
+
+        let r = await db.infoa_enl_usuario.update(
+            {
+                ds_email: usuario.ds_email
+            },
+        {
+            where: {id_usuario: id}
+        });
 
 
-
+        resp.send(r);
+    } catch (error) {
+        resp.send({error: "endereço não foi alterado devido a um erro ai"})
+    }
+});
 
 // inserir um produto 
 
