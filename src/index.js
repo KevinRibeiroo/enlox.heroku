@@ -615,10 +615,7 @@ app.post('/login', async (req, resp) => {
     try {
         let login = req.body;
 
-       
-
-        
-
+  
         let logar = await db.infoa_enl_usuario.findOne({
             where: {
                 ds_email: login.ds_email,
@@ -628,7 +625,7 @@ app.post('/login', async (req, resp) => {
             
             
             if (login.ds_email === "" || login.ds_senha === "") {
-                return resp.send({error: "Não pode inserir campos vazios"})
+                return resp.send({error: "Não pode ser inserido campos vazios"})
             }
           
             if (logar === null){
@@ -655,6 +652,44 @@ app.post('/login', async (req, resp) => {
 
 
 
+app.post('/esqueciASenha', async(req, resp)=>{
+
+  const usu = await db.infoa_enl_usuario.findOne({where:{
+      ds_email: req.body.email
+  }})
+
+  if(!usu){
+      resp.send({error:"Email inválido."})
+  }else{
+      let code = Math.floor(Math.random() * (9999 - 1000) ) + 1000;
+
+      await db.infoa_enl_usuario.update({
+        ds_codigo: code
+      },{
+          where:{id_usuario:usu.id_usuario}
+      })
+  }
+});
+
+
+
+app.post('/validarCodigo', async(req, resp)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+});
+
+
+
+app.put('/resetarSenha', async(req, resp)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+});
 
 app.post('/categoria', async (req, resp) => {
     try {
