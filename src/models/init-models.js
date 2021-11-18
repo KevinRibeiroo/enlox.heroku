@@ -127,10 +127,8 @@ import _infoc_tht_pacote from  "./infoc_tht_pacote.js";
 import _infoc_tht_usuario from  "./infoc_tht_usuario.js";
 import _infod_ecm_tb_calc from  "./infod_ecm_tb_calc.js";
 import _infod_ecm_tb_categorias from  "./infod_ecm_tb_categorias.js";
-import _infod_ecm_tb_intm from  "./infod_ecm_tb_intm.js";
-import _infod_ecm_td_roupas_femi from  "./infod_ecm_td_roupas_femi.js";
-import _infod_ecm_td_roupas_infa from  "./infod_ecm_td_roupas_infa.js";
-import _infod_ecm_td_roupas_masc from  "./infod_ecm_td_roupas_masc.js";
+import _infod_ecm_tb_roupas from  "./infod_ecm_tb_roupas.js";
+import _infod_ecm_usuario from  "./infod_ecm_usuario.js";
 import _infod_leo_agendamento from  "./infod_leo_agendamento.js";
 import _infod_leo_cliente from  "./infod_leo_cliente.js";
 import _infod_leo_funcionario from  "./infod_leo_funcionario.js";
@@ -292,10 +290,8 @@ export default function initModels(sequelize) {
   var infoc_tht_usuario = _infoc_tht_usuario.init(sequelize, DataTypes);
   var infod_ecm_tb_calc = _infod_ecm_tb_calc.init(sequelize, DataTypes);
   var infod_ecm_tb_categorias = _infod_ecm_tb_categorias.init(sequelize, DataTypes);
-  var infod_ecm_tb_intm = _infod_ecm_tb_intm.init(sequelize, DataTypes);
-  var infod_ecm_td_roupas_femi = _infod_ecm_td_roupas_femi.init(sequelize, DataTypes);
-  var infod_ecm_td_roupas_infa = _infod_ecm_td_roupas_infa.init(sequelize, DataTypes);
-  var infod_ecm_td_roupas_masc = _infod_ecm_td_roupas_masc.init(sequelize, DataTypes);
+  var infod_ecm_tb_roupas = _infod_ecm_tb_roupas.init(sequelize, DataTypes);
+  var infod_ecm_usuario = _infod_ecm_usuario.init(sequelize, DataTypes);
   var infod_leo_agendamento = _infod_leo_agendamento.init(sequelize, DataTypes);
   var infod_leo_cliente = _infod_leo_cliente.init(sequelize, DataTypes);
   var infod_leo_funcionario = _infod_leo_funcionario.init(sequelize, DataTypes);
@@ -678,10 +674,8 @@ export default function initModels(sequelize) {
     infoc_tht_usuario,
     infod_ecm_tb_calc,
     infod_ecm_tb_categorias,
-    infod_ecm_tb_intm,
-    infod_ecm_td_roupas_femi,
-    infod_ecm_td_roupas_infa,
-    infod_ecm_td_roupas_masc,
+    infod_ecm_tb_roupas,
+    infod_ecm_usuario,
     infod_leo_agendamento,
     infod_leo_cliente,
     infod_leo_funcionario,

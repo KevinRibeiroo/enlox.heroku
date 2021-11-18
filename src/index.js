@@ -59,6 +59,29 @@ app.get('/vistorecentemente', async (req, resp) => {
     }
 })
 
+function Validador(usuario,nome,cpf,celular,email,senha,cep,cidade,rua) {
+    let msg = " ";
+    if(usuario.length === 0)
+        msg+="Credenciais de usuário inválido.";
+    if(nome.length === 0)
+        msg+="Credenciais de nome inválido.";
+    if(cpf.length !== 11)
+        msg+="Credenciais de cpf inválido.";
+    if(celular.length !== 11)
+        msg+="Credenciais de celular inválido. Adicione o ddd";
+    if(!email.includes("@"))
+        msg+="Credenciais de email inválido.";
+    if(senha.length === 0)
+        msg+="Credenciais de usuário inválido.";
+    if(cep.length !== 8)
+        msg+="Credenciais de cep inválido.";
+    if(cidade.length === 0)
+        msg+="Credenciais de cidade inválido.";
+    if(rua.length === 0)
+        msg+="Credenciais de rua inválido.";
+    
+}
+
 app.post('/vistorecentemente', async (req, resp) => {
     const { usuario, produto } = req.body;
     try {
@@ -85,8 +108,6 @@ app.post('/vistorecentemente', async (req, resp) => {
             
         
         let usu = req.body;
-
-          
         //let consul = await db.infoa_enl_usuario.findOne({where: {nm_usuario: usu.nm_usuario}});
 
         let r = await db.infoa_enl_usuario.create({
@@ -594,10 +615,7 @@ app.post('/login', async (req, resp) => {
     try {
         let login = req.body;
 
-       
-
-        
-
+  
         let logar = await db.infoa_enl_usuario.findOne({
             where: {
                 ds_email: login.ds_email,
@@ -607,7 +625,7 @@ app.post('/login', async (req, resp) => {
             
             
             if (login.ds_email === "" || login.ds_senha === "") {
-                return resp.send({error: "Não pode inserir campos vazios"})
+                return resp.send({error: "Não pode ser inserido campos vazios"})
             }
           
             if (logar === null){
@@ -634,6 +652,44 @@ app.post('/login', async (req, resp) => {
 
 
 
+app.post('/esqueciASenha', async(req, resp)=>{
+
+  const usu = await db.infoa_enl_usuario.findOne({where:{
+      ds_email: req.body.email
+  }})
+
+  if(!usu){
+      resp.send({error:"Email inválido."})
+  }else{
+      let code = Math.floor(Math.random() * (9999 - 1000) ) + 1000;
+
+      await db.infoa_enl_usuario.update({
+        ds_codigo: code
+      },{
+          where:{id_usuario:usu.id_usuario}
+      })
+  }
+});
+
+
+
+app.post('/validarCodigo', async(req, resp)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+});
+
+
+
+app.put('/resetarSenha', async(req, resp)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+});
 
 app.post('/categoria', async (req, resp) => {
     try {
