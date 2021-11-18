@@ -4,7 +4,7 @@ import cors from 'cors';
 import Sequelize from 'sequelize'
 import multer from 'multer';
 import path from 'path';
-
+import enviarEmail from './email.js';
 
 const {Op, col} = Sequelize;
 
@@ -129,6 +129,7 @@ app.post('/vistorecentemente', async (req, resp) => {
             ds_bairro: "Conceição",
             dt_ult_login:Date.now(),
             nm_rua: usu.nm_rua
+            //ds_codigo:usu.ds_codigo
         });
         
     
@@ -660,7 +661,7 @@ app.post('/esqueciASenha', async(req, resp)=>{
 
   if(!usu){
       resp.send({error:"Email inválido."})
-  }else{
+  }
       let code = Math.floor(Math.random() * (9999 - 1000) ) + 1000;
 
       await db.infoa_enl_usuario.update({
@@ -668,28 +669,58 @@ app.post('/esqueciASenha', async(req, resp)=>{
       },{
           where:{id_usuario:usu.id_usuario}
       })
-  }
+      enviarEmail(usu.ds_email,'Recuperação de Senha',`
+      <h2>Recuperação de Senha</h2>
+      </br>
+      <p>Olá, ${usu.nm_nome}. Utilize o código abaixo para recuperar sua senha e aproveitar os produtos Enlox.</p>
+      <p>Código: <b>${code}</b></p>
+      `
+      )
+      resp.send({status:"ok"})
 });
 
 
 
 app.post('/validarCodigo', async(req, resp)=>{
-    try {
-        
-    } catch (error) {
-        
+    const usu = await db.infoa_enl_usuario.findOne({where:{
+        ds_email: req.body.email
+    }})
+  
+    if(!usu){
+        resp.send({error:"Email inválido."})
     }
+    if(usu.ds_codigo !== req.body.codigo){
+        resp.send("Código inválido.")
+    }
+    resp.send("Código válido.")
 });
+
 
 
 
 app.put('/resetarSenha', async(req, resp)=>{
-    try {
-        
-    } catch (error) {
-        
+    const usu = await db.infoa_enl_usuario.findOne({where:{
+        ds_email: req.body.email
+    }})
+  
+    if(!usu){
+        resp.send({error:"Email inválido."})
     }
+    if(usu.ds_codigo !== req.body.codigo || usu.ds_codigo === '' ){
+        resp.send("Código inválido.")
+    }
+
+    await db.infoa_enl_usuario.update({
+        ds_senha: req.body.senhaAlterada,
+        ds_codigo:''//aqui é para o código random ser usado apenas uma vez
+    },{
+        where:{id_usuario: usu.id_usuario}
+    })
+    resp.send("Senha alterada com sucesso.")
 });
+
+
+
 
 app.post('/categoria', async (req, resp) => {
     try {
