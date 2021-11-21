@@ -409,7 +409,7 @@ app.get('/produtoss/:id', async (req, resp) => {
         let page = req.query.page || 0;
         if (page <= 0) page = 1;
       
-        const itemsPerPage = 8;
+        const itemsPerPage = 5;
         const skipItems    = (page-1) * itemsPerPage;
 
         let list = await db.infoa_enl_produto.findAll(
