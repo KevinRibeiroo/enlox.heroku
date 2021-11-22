@@ -300,7 +300,23 @@ app.put('/usuarioEndereco/:id', async (req, resp) => {
 
 
 
+app.post('/cartao/:id', async (req, resp) => {
+    const cartao = req.body;
+    const id = req.params.id
+    try {
+        const r = await db.infoa_enl_cartao_credito.create({
+            id_cartao: cartao,
+            id_usuario: id,
+            nr_cartao: nr_cartao, 
+            nr_cvc: nr_cvc, 
+            dt_validade: dt_validade
+        })
+        resp.sendStatus(200);
+    } catch (e) {
+        resp.send({ error: 'Deu ruim'})
+    }
 
+})
 
 
 
