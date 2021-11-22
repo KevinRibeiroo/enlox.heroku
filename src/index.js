@@ -5,6 +5,7 @@ import Sequelize from 'sequelize'
 import multer from 'multer';
 import path from 'path';
 import enviarEmail from './email.js';
+import { send } from 'process';
 
 const {Op, col} = Sequelize;
 
@@ -654,60 +655,77 @@ app.post('/login', async (req, resp) => {
 
 
 app.post('/esqueciASenha', async(req, resp)=>{
+    try {
+        
+  
+    let usu = await db.infoa_enl_usuario.findOne({where:{
+        ds_email: req.body.ds_email
+    }})
+    
+        if(!usu){
+            resp.send({error:"Email inválido."})
+        }
+    
+        let code = Math.floor(Math.random() * (9999 - 1000) ) + 1000;
+  
+        await db.infoa_enl_usuario.update({
+          ds_codigo: code
+        },{
+            where:{id_usuario:usu.id_usuario}
+        })
+        enviarEmail(usu.ds_email,'Recuperação de Senha',`
+        <h2>Recuperação de Senha</h2>
+        </br>
+        <p>Olá, ${usu.nm_nome}. Utilize o código abaixo para recuperar sua senha e aproveitar os produtos Enlox.</p>
+        <p>Código: <b>${code}</b></p>
+        `
+        )
+        resp.sendStatus(200)
+    } catch (error) {
+        resp.send({error:"Errado"})
+    }
 
-  const usu = await db.infoa_enl_usuario.findOne({where:{
-      ds_email: req.body.email
-  }})
 
-  if(!usu){
-      resp.send({error:"Email inválido."})
-  }
-      let code = Math.floor(Math.random() * (9999 - 1000) ) + 1000;
-
-      await db.infoa_enl_usuario.update({
-        ds_codigo: code
-      },{
-          where:{id_usuario:usu.id_usuario}
-      })
-      enviarEmail(usu.ds_email,'Recuperação de Senha',`
-      <h2>Recuperação de Senha</h2>
-      </br>
-      <p>Olá, ${usu.nm_nome}. Utilize o código abaixo para recuperar sua senha e aproveitar os produtos Enlox.</p>
-      <p>Código: <b>${code}</b></p>
-      `
-      )
-      resp.send({status:"ok"})
 });
 
 
 
 app.post('/validarCodigo', async(req, resp)=>{
+    try {
+        
+    
     const usu = await db.infoa_enl_usuario.findOne({where:{
-        ds_email: req.body.email
+        ds_email: req.body.ds_email
     }})
   
     if(!usu){
         resp.send({error:"Email inválido."})
     }
-    if(usu.ds_codigo !== req.body.codigo){
-        resp.send("Código inválido.")
+    if(usu.ds_codigo !== req.body.ds_codigo){
+        resp.send({error:"Código inválido."})
     }
-    resp.send("Código válido.")
+    resp.sendStatus(200)
+} catch (error) {
+        resp.send({error:"Erro"})
+}
 });
 
 
 
 
 app.put('/resetarSenha', async(req, resp)=>{
+    try {
+        
+   
     const usu = await db.infoa_enl_usuario.findOne({where:{
-        ds_email: req.body.email
+        ds_email: req.body.ds_email
     }})
   
     if(!usu){
         resp.send({error:"Email inválido."})
     }
-    if(usu.ds_codigo !== req.body.codigo || usu.ds_codigo === '' ){
-        resp.send("Código inválido.")
+    if(usu.ds_codigo !== req.body.ds_codigo || usu.ds_codigo === '' ){
+        resp.send({error:"Código inválido."})
     }
 
     await db.infoa_enl_usuario.update({
@@ -716,7 +734,10 @@ app.put('/resetarSenha', async(req, resp)=>{
     },{
         where:{id_usuario: usu.id_usuario}
     })
-    resp.send("Senha alterada com sucesso.")
+    resp.sendStatus(200)
+} catch (error) {
+     resp.send({error:"Erro"})   
+}
 });
 
 
