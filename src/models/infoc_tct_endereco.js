@@ -37,6 +37,10 @@ export default class infoc_tct_endereco extends Model {
     nm_ponto_referencia: {
       type: DataTypes.STRING(100),
       allowNull: true
+    },
+    id_cliente: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
