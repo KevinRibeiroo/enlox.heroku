@@ -324,34 +324,24 @@ app.put('/usuarioEndereco/:id', async (req, resp) => {
 
 
 app.post('/cartao/:id', async (req, resp) => {
-    const {nrCartao, nrCvc, dtVal} = req.body;
-    const id = req.params.id
     try {
+        let {nrCartao, nrCvc, dtVal} = req.body;
+     
+        let id = req.params.id;
+    
         const r = await db.infoa_enl_cartao_credito.create({
             id_usuario: id,
             nr_cartao: nrCartao, 
             nr_cvc: nrCvc, 
-            dt_validade: dtVal
-        })
-        console.log(nrCartao)
-        console.log(id)
+            dt_validade: Date.now()
+        });
+  
         resp.sendStatus(200);
-    } catch (e) {
+    } catch (error) {
         resp.send({ error: 'Deu ruim'})
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 // inserir um produto 
@@ -793,6 +783,7 @@ app.post('/chat/:id/:id2', async (req, resp) => {
     try {
         let chat = req.body;
         let id = req.params.id;
+
 
         //let consul = await db.infoa_enl_chat.findOne({where: {id_usuario: id}})
 
